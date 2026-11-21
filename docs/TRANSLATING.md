@@ -12,4 +12,4 @@ All locales share stable semantic keys. Missing runtime values fall back to Engl
 
 Submit translations with the locale file and small registration change. Project documentation remains in English. Translation resources may contain the target language's characters and punctuation.
 
-The static experience has its own small key set in `demo/src/locales/`. Add the corresponding locale and register it in `demo/src/main.ts` when translating the demo. `pnpm run check:locales` checks both directories.
+The static experience shares the application frontend and the same locale files. Translate the demo label and contextual help alongside the other interface keys; language additions apply to both builds.

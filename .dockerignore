@@ -15,3 +15,4 @@ deployment.env
 deploy
 dist
 test-results
+demo/public/runtime
