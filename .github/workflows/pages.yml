@@ -2,7 +2,7 @@ name: Static demo
 on:
   push:
     branches: [main]
-    paths: ['demo/**', 'web/**', 'cmd/demo-wasm/**', 'internal/codec/**', 'internal/catalog/**', 'internal/geography/**', 'internal/democlient/**', 'internal/buildinfo/**', 'go.mod', 'go.sum', 'third_party/licenses/**', 'vite.demo.config.ts', 'postcss.config.mjs', 'tsconfig.json', 'package.json', 'pnpm-lock.yaml', 'scripts/build-demo.mjs', 'scripts/demo-test.mjs', 'scripts/browser-select.mjs', 'scripts/testdata/demo.json', '.github/workflows/pages.yml']
+    paths: ['demo/**', 'web/**', 'cmd/demo-wasm/**', 'internal/codec/**', 'internal/catalog/**', 'internal/geography/**', 'internal/democlient/**', 'internal/buildinfo/**', 'go.mod', 'go.sum', 'third_party/licenses/**', 'package.json', 'pnpm-lock.yaml', 'scripts/build-demo.mjs', 'scripts/demo-test.mjs', 'scripts/browser-select.mjs', 'scripts/testdata/demo.json', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -32,7 +32,7 @@ jobs:
           pnpm run test:demo
       - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
-          path: dist/demo
+          path: build/site
   deploy:
     if: github.ref == 'refs/heads/main'
     needs: build

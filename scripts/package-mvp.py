@@ -4,13 +4,13 @@ import shutil
 import tarfile
 
 root=Path(__file__).resolve().parents[1]
-out=root/'deploy-bundle'
-out.mkdir(exist_ok=True)
+out=root/'build/deploy-bundle'
+out.mkdir(parents=True,exist_ok=True)
 for name in ('pnd-linux','codec-linux.test','server-linux.test','geography-linux.test','geoipupdate-linux.test'):
     shutil.copyfile(root/'build'/name,out/name)
 shutil.copyfile(root/'LICENSE',out/'LICENSE')
 shutil.copyfile(root/'THIRD_PARTY_NOTICES.md',out/'THIRD_PARTY_NOTICES.md')
-shutil.copyfile(root/'compose.geoip-auto.yaml',out/'compose.geoip-auto.yaml')
+shutil.copyfile(root/'deploy/overlays/compose.geoip-auto.yaml',out/'compose.geoip-auto.yaml')
 shutil.copytree(root/'third_party/licenses',out/'licenses',dirs_exist_ok=True)
 shutil.copytree(root/'internal/codec/testdata',out/'testdata',dirs_exist_ok=True)
 compose=(root/'compose.yaml').read_text(encoding='utf-8').replace('    build: .','    build:\n      context: .\n      dockerfile: Dockerfile.runtime')

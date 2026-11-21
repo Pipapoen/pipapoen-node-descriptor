@@ -4,7 +4,7 @@ import {createServer} from 'node:http';
 import {readFile,mkdir} from 'node:fs/promises';
 import {resolve,extname} from 'node:path';
 import assert from 'node:assert/strict';
-const root=resolve('dist/demo');
+const root=resolve('build/site');
 const server=createServer(async(req,res)=>{
  const path=decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\/pnd-demo\//,'');
  const file=resolve(root,path||'index.html');
@@ -90,10 +90,10 @@ try{
  await page.waitForFunction(()=>document.documentElement.dataset.theme==='light');
  await pick(page,'language','en');
  await pick(page,'mode','compact');await generate();
- await mkdir('test-results',{recursive:true});await page.screenshot({path:'test-results/demo-desktop.png',fullPage:true});
+ await mkdir('build/test-results',{recursive:true});await page.screenshot({path:'build/test-results/demo-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
- await page.screenshot({path:'test-results/demo-mobile.png',fullPage:true});
+ await page.screenshot({path:'build/test-results/demo-mobile.png',fullPage:true});
  page.once('dialog',dialog=>dialog.accept());await page.locator('#new-id').click();
  await page.waitForFunction(id=>document.querySelector('#node-id').value!==id,original);
  await page.locator('[data-tab=decode]').click();await page.locator('#decode-input').fill('invalid');await page.locator('#decode-form button').click();

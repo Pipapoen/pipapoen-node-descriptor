@@ -32,7 +32,7 @@ def source_files():
 def check():
     v = version()
     assert f'"{v}"' in (ROOT / 'internal/buildinfo/version.go').read_text(), 'Go version differs'
-    for name in ('compose.yaml', 'compose.geoip-auto.yaml', 'deploy/compose.yaml', 'deploy/.env.example'):
+    for name in ('compose.yaml', 'deploy/overlays/compose.geoip-auto.yaml', 'deploy/compose.yaml', 'deploy/.env.example'):
         assert ':' + v in (ROOT / name).read_text(), f'Image version differs: {name}'
     patterns = [rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----', rb'gh[pousr]_[A-Za-z0-9]{30,}', rb'github_pat_[A-Za-z0-9_]{30,}']
     for path in source_files():
