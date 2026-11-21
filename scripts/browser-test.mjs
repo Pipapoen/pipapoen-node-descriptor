@@ -1,16 +1,19 @@
+import {pick} from './browser-select.mjs';
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 const base=process.env.PND_TEST_URL||'http://127.0.0.1:8080';
 const browser=await chromium.launch({channel:process.env.PND_BROWSER_CHANNEL || (process.env.CI ? undefined : 'msedge'),headless:true});
 const page=await browser.newPage({viewport:{width:1360,height:1000},locale:'en-US'});
+async function chooseProvider(value){await pick(page,'provider',value)}
 async function openPicker(kind){const other=kind==='country'?'city':'country';if(await page.locator('#'+other+'-picker').evaluate(el=>el.open))await page.locator('#'+other+'-filter').press('Escape');if(!await page.locator('#'+kind+'-picker').evaluate(el=>el.open))await page.locator('#'+kind+'-trigger').click()}
 async function filterPicker(kind,value){await openPicker(kind);if(kind==='city'){const response=page.waitForResponse(r=>r.url().includes('/api/cities?')&&new URL(r.url()).searchParams.get('q')===value);await page.locator('#'+kind+'-filter').fill(value);await response}else await page.locator('#'+kind+'-filter').fill(value)}
 async function choosePicker(kind,value){await openPicker(kind);await page.locator('#'+kind).selectOption(value);await page.locator('#'+kind).press('Enter')}
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 try {
- await page.context().grantPermissions(['clipboard-read','clipboard-write'],{origin:new URL(base).origin});
- await page.goto(base);await page.locator('#node-id').waitFor();
+ await page.goto(base);
+ if(await page.evaluate(()=>window.isSecureContext))await page.context().grantPermissions(['clipboard-read','clipboard-write'],{origin:new URL(base).origin});
+ await page.locator('#node-id').waitFor();
  const capabilities=await (await page.request.get(base+'/api/meta')).json();
  assert.equal(await page.locator('.header-title').count(),0);
  await page.locator('#brand-home').focus();
@@ -53,26 +56,26 @@ try {
  const initialResponse=page.waitForResponse(r=>r.url().endsWith('/api/encode'));
  await page.locator('#generate').click();
  assert.deepEqual((await (await initialResponse).json()).descriptor,{nodeId:original});
- for(const id of ['provider','architecture','nodeType','cpu','ram','storage'])await page.locator('#'+id).selectOption('0');
+ for(const id of ['provider','architecture','nodeType','cpu','ram','storage'])await (id==='provider'?chooseProvider('0'):pick(page,id,'0'));
  const zeroResponse=page.waitForResponse(r=>r.url().endsWith('/api/encode'));
  await page.locator('#generate').click();
  const zeroData=(await (await zeroResponse).json()).descriptor;
  for(const id of ['provider','architecture','nodeType','cpu','ram','storage'])assert.equal(zeroData[id],0);
- for(const id of ['provider','architecture','nodeType','cpu','ram','storage'])await page.locator('#'+id).selectOption('');
+ for(const id of ['provider','architecture','nodeType','cpu','ram','storage'])await (id==='provider'?chooseProvider(''):pick(page,id,''));
  const clearedResponse=page.waitForResponse(r=>r.url().endsWith('/api/encode'));
  await page.locator('#generate').click();
  assert.deepEqual((await (await clearedResponse).json()).descriptor,{nodeId:original});
-await page.locator('#provider').selectOption('1');
- await page.locator('.recommendations summary').click();
+await chooseProvider('1');
+ await page.locator('.recommendations > summary').click();
  await page.locator('.suggestion').first().click();
  const selectedRAM=await page.locator('#ram').inputValue();
- await page.locator('#provider').selectOption('3');assert.equal(await page.locator('#ram').inputValue(),selectedRAM);
+ await chooseProvider('3');assert.equal(await page.locator('#ram').inputValue(),selectedRAM);
 await page.locator('#ipv4').fill('192.0.2.10');
 await page.locator('#ipv6').fill('2001:db8::10');
  await page.locator('#geo').fill('5128581');
  await page.locator('#generate').click();await page.waitForFunction(()=>document.querySelector('#hostname')?.textContent);
  const compact=await page.locator('#hostname').textContent();assert.ok(compact.split('.')[0].length<=63);
- await page.locator('#mode').selectOption('padded');await page.locator('#generate').click();
+ await pick(page,'mode','padded');await page.locator('#generate').click();
  await page.waitForFunction(()=>document.querySelector('#hostname')?.textContent?.split('.')[0].length===63);
  const padded=await page.locator('#hostname').textContent();assert.equal(padded.split('.')[0].length,63);
  await page.locator('#copy').click();await page.waitForFunction(()=>document.querySelector('#copy').textContent==='Copied');
@@ -95,9 +98,9 @@ await page.locator('#ipv6').fill('2001:db8::10');
  await page.locator('#decode-input').fill(padded);await page.locator('#decode-form button').click();
  await page.waitForFunction(()=>document.querySelector('#decoded-city').textContent.includes('New York'));
  await page.locator('#edit-decoded').click();assert.equal(await page.locator('#node-id').inputValue(),original);
- await page.locator('#theme').selectOption('dark');assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
+ await pick(page,'theme','dark');assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
  const darkBackground=await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor);
- await page.locator('#language').selectOption('zh-TW');assert.equal(await page.locator('html').getAttribute('lang'),'zh-TW');
+ await pick(page,'language','zh-TW');assert.equal(await page.locator('html').getAttribute('lang'),'zh-TW');
  assert.equal(await page.locator('#node-id').inputValue(),original);
  await page.locator('#geo-tools > summary').click();
  await page.waitForFunction(()=>!document.querySelector('#country-filter').disabled);
@@ -111,9 +114,9 @@ await page.locator('#ipv6').fill('2001:db8::10');
  await page.waitForFunction(()=>Array.from(document.querySelector('#city').options).some(o=>o.value==='1668341'&&o.textContent.includes('\u81fa\u5317')));
  await filterPicker('city','Taipei');
  await page.waitForFunction(()=>Array.from(document.querySelector('#city').options).some(o=>o.value==='1668341'&&o.textContent.includes('\u81fa\u5317')));
- await page.locator('#theme').selectOption('system');await page.emulateMedia({colorScheme:'light'});await page.waitForFunction(()=>document.documentElement.dataset.theme==='light');
+ await pick(page,'theme','system');await page.emulateMedia({colorScheme:'light'});await page.waitForFunction(()=>document.documentElement.dataset.theme==='light');
  assert.notEqual(await page.locator('body').evaluate(el=>getComputedStyle(el).backgroundColor),darkBackground);
- await page.locator('#language').selectOption('en');
+ await pick(page,'language','en');
  await page.locator('#generate').click();
  await page.waitForFunction(()=>document.querySelector('#stale')?.hidden && document.querySelector('#used-bits')?.textContent!=='—');
  await page.evaluate(()=>scrollTo(0,0));

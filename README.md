@@ -11,8 +11,6 @@
 
 PND turns selected node information into a consistent hostname and lets you recover that information later. Choose the details to include, preview the available space, and copy the generated name.
 
-The web interface includes English and Traditional Chinese, light/dark/system themes, location helpers, and data import/export.
-
 [Try PND in your browser](https://pipapoen.github.io/pipapoen-node-descriptor/).
 
 ## Deploy with Docker Compose

@@ -2,7 +2,7 @@ name: Static demo
 on:
   push:
     branches: [main]
-    paths: ['demo/**', 'web/**', 'cmd/demo-wasm/**', 'internal/codec/**', 'internal/catalog/**', 'internal/geography/**', 'internal/democlient/**', 'internal/buildinfo/**', 'go.mod', 'go.sum', 'third_party/licenses/**', 'vite.demo.config.ts', 'postcss.config.mjs', 'tsconfig.json', 'package.json', 'pnpm-lock.yaml', 'scripts/build-demo.mjs', 'scripts/demo-test.mjs', 'scripts/testdata/demo.json', '.github/workflows/pages.yml']
+    paths: ['demo/**', 'web/**', 'cmd/demo-wasm/**', 'internal/codec/**', 'internal/catalog/**', 'internal/geography/**', 'internal/democlient/**', 'internal/buildinfo/**', 'go.mod', 'go.sum', 'third_party/licenses/**', 'vite.demo.config.ts', 'postcss.config.mjs', 'tsconfig.json', 'package.json', 'pnpm-lock.yaml', 'scripts/build-demo.mjs', 'scripts/demo-test.mjs', 'scripts/browser-select.mjs', 'scripts/testdata/demo.json', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read

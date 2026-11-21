@@ -3,11 +3,12 @@ import './style.css';
 import en from './locales/en.json';
 import zh from './locales/zh-TW.json';
 import {request} from '@pnd/transport';
+import {setupCatalog,type Plan,type Provider} from './catalog';
+import {setupPickers} from './pickers';
 
 type Locale = typeof en;
 type Descriptor = {nodeId:string; geo?:number; provider?:number; architecture?:number; nodeType?:number; cpu?:number; ram?:number; storage?:number; ipv4?:string; ipv6?:string};
-type Plan={provider:number;name:string;label:string;cpu:number;ram:number;storage:number};
-type Meta={demo?:boolean;brandName:string;prefix:string;domain:string;mode:string;cpu:string[];ram:string[];storage:string[];providers:{id:number;name:string}[];plans:Plan[];placesEnabled:boolean;geoipEnabled:boolean;countriesEnabled:boolean;geoipAttribution:string};
+type Meta={demo?:boolean;brandName:string;prefix:string;domain:string;mode:string;cpu:string[];ram:string[];storage:string[];providers:Provider[];plans:Plan[];catalog:{checkedAt:string;plans:number};placesEnabled:boolean;geoipEnabled:boolean;countriesEnabled:boolean;geoipAttribution:string};
 type Preview={bits:number;capacityBits:number;compactLength:number;labelLength:number;mode:string};
 const locales:Record<string,Locale>={'en':en,'zh-TW':zh};
 let lang=localStorage.getItem('pnd.language') || (navigator.language.toLowerCase().startsWith('zh')?'zh-TW':'en');
@@ -17,9 +18,10 @@ if(!['light','dark','system'].includes(theme))theme='system';
 let meta:Meta, nodeId='', lastDecoded:Descriptor|undefined, lastOutput:Descriptor|undefined, lastHostname='', outputStale=false, tab='encode', sequence=0, timer:ReturnType<typeof setTimeout>;
 let session={required:false,authenticated:false,brandName:''};
 let citySequence=0, cityOffset=0, mountGeneration=0;
-let pickerEvents:AbortController|undefined;
+let pickerUI:ReturnType<typeof setupPickers>|undefined;
 let decodedLocationSequence=0;
 let outputRevision=0;
+let catalogUI:ReturnType<typeof setupCatalog>|undefined;
 let cityTimer:ReturnType<typeof setTimeout>;
 let cityRows:{id:number;name:string;admin:string;feature:string;names?:Record<string,string>;adminNames?:Record<string,string>}[]=[];
 const $=<T extends HTMLElement>(s:string)=>document.querySelector<T>(s)!;
@@ -31,7 +33,12 @@ applyTheme();matchMedia('(prefers-color-scheme: dark)').addEventListener('change
 async function api<T>(path:string,data?:unknown):Promise<T>{const {ok,result}=await request(path,data);if(!ok)throw new Error(t(result.error||'error'));return result}
 function help(key:string){return `<details class="help"><summary aria-label="${text('help')}">?</summary><p>${text(key)}</p></details>`}
 function field(key:string,input:string){return `<div class="field"><label class="label" for="${key}">${text(key)}</label>${input}</div>`}
-function select(key:string,options:{value:number;label:string}[]){return `<select class="select" id="${key}" aria-label="${text(key)}"><option value="">${text('none')}</option>${options.map(o=>`<option value="${o.value}">${escape(o.label)}</option>`).join('')}</select>`}
+function select(key:string,options:{value:number;label:string}[]){
+ const special=key==='architecture'?3:key==='nodeType'?7:undefined;
+ const render=(rows:typeof options)=>rows.map(o=>`<option value="${o.value}">${escape(o.label)}</option>`).join('');
+ const groups=special===undefined?render(options):`<optgroup label="${text('specialOptions')}">${render(options.filter(o=>o.value===special))}</optgroup><optgroup label="${text('standardOptions')}">${render(options.filter(o=>o.value!==special))}</optgroup>`;
+ return `<select class="select" id="${key}" aria-label="${text(key)}"><option value="">${text('none')}</option>${groups}</select>`;
+}
 function number(key:string,max:number){return `<input class="input" id="${key}" type="number" min="1" max="${max}" step="1" inputmode="numeric" aria-label="${text(key)}" placeholder="—">`}
 function optionList(v:string[]){return v.map((label,value)=>({label,value}))}
 function current():Descriptor{
@@ -52,17 +59,17 @@ function restore(d:Descriptor){
   if(value!==undefined&&input instanceof HTMLSelectElement&&!Array.from(input.options).some(o=>o.value===String(value)))input.add(new Option(String(value),String(value)));
   input.value=value===undefined?'':String(value);
  }
- recommend();schedulePreview();
+ recommend();pickerUI?.refresh();schedulePreview();
 }
 function mount(){
- ++mountGeneration;++citySequence;clearTimeout(cityTimer);pickerEvents?.abort();
+ ++mountGeneration;++citySequence;clearTimeout(cityTimer);pickerUI?.destroy();
  document.documentElement.lang=lang;
  $('#app').innerHTML=`
  <div class="app-content">
   <header class="app-header">
    <button class="brand-link" id="brand-home" type="button"><span class="brand-symbol" aria-hidden="true"></span><strong>PND</strong>${meta.brandName?`<span class="brand-name">${escape(meta.brandName)}</span>`:''}</button>
    <nav class="workspace-nav" aria-label="Workspace">${['encode','decode'].map(k=>`<button class="nav-link ${tab===k?'active':''}" data-tab="${k}">${text(k)}</button>`).join('')}</nav>
-   <div class="toolbar"><select class="select" id="language" aria-label="${text('language')}"><option value="en">English</option><option value="zh-TW">${escape(zh.localeName)}</option></select><select class="select" id="theme" aria-label="${text('theme')}">${['light','dark','system'].map(k=>`<option value="${k}">${text(k)}</option>`).join('')}</select>${session.required?`<button id="logout" data-variant="outline" class="btn btn-outline btn-sm">${text('logout')}</button>`:''}</div>
+   <div class="toolbar"><select class="select" id="language" aria-label="${text('language')}"><option value="en">English</option><option value="zh-TW">${escape(zh.localeName)}</option></select><select class="select" id="theme" aria-label="${text('theme')}"><optgroup label="${text('specialOptions')}"><option value="system">${text('system')}</option></optgroup><optgroup label="${text('standardOptions')}">${['light','dark'].map(k=>`<option value="${k}">${text(k)}</option>`).join('')}</optgroup></select>${session.required?`<button id="logout" data-variant="outline" class="btn btn-outline btn-sm">${text('logout')}</button>`:''}</div>
   </header>
   <main>
    <div class="page-heading"><h1>${text(tab==='encode'?'builder':'decode')}</h1><span class="text-secondary version-label">${text(meta.demo?'demoLabel':'experiment')}${meta.demo?help('demoHelp'):''}</span></div>
@@ -72,19 +79,19 @@ function mount(){
      <div class="card-header"><h2 class="card-title">${text('nodeDetails')}</h2><div class="card-actions"><button type="button" id="import" data-variant="outline" class="btn btn-outline btn-sm">${text('import')}</button><button type="button" id="export-input" data-variant="outline" class="btn btn-outline btn-sm">${text('export')}</button><input type="file" id="import-file" accept="application/json,.json" hidden></div></div>
      <div class="card-body">
       <section class="identity-block"><div class="section-heading"><label class="label" for="node-id">Node ID</label>${help('identityHelp')}</div><div class="input-group"><input id="node-id" class="input mono" readonly spellcheck="false" aria-readonly="true"><button type="button" id="new-id" data-variant="outline" class="btn btn-outline">${text('regenerate')}</button></div></section>
-      <section><h2 class="section-label">${text('placement')}</h2><div class="placement-grid">${field('provider',select('provider',meta.providers.map(p=>({value:p.id,label:p.id===0?t('selfManaged'):p.id===65535?t('other'):p.name}))))}<div class="geo-field">${field('geo',number('geo',4294967295))}
+      <section><h2 class="section-label">${text('placement')}</h2><div class="placement-grid"><div class="field"><label class="label" for="provider">${text('provider')}</label><details class="search-picker" id="provider-picker"><summary id="provider-trigger"><span id="provider-label">${text('none')}</span></summary><div class="picker-popup"><label class="sr-only" for="provider-filter">${text('providerFilter')}</label><input class="input" id="provider-filter" type="search" placeholder="${text('providerFilter')}" autocomplete="off"><select class="picker-list" id="provider" size="7" aria-label="${text('provider')}"><option value="">${text('none')}</option></select><p id="provider-status" class="geo-status" aria-live="polite"></p></div></details></div><div class="geo-field">${field('geo',number('geo',4294967295))}
        <details id="geo-tools" class="geo-tools"><summary>${text('locationTools')}</summary>
         <div class="geo-toolbar" role="tablist" aria-label="${text('locationTools')}">${['browse','place','ip'].map((k,i)=>`<button id="geo-tab-${k}" type="button" role="tab" aria-controls="geo-panel-${k}" aria-selected="${i===0}" data-geo-tab="${k}" class="geo-tab ${i===0?'active':''}">${text('tool'+k)}</button>`).join('')}</div>
         <div id="geo-panel-browse" class="geo-panel" role="tabpanel" aria-labelledby="geo-tab-browse">
          <label class="label" for="country">${text('country')}</label><details class="search-picker" id="country-picker"><summary id="country-trigger"><span id="country-label">${text('chooseCountry')}</span></summary><div class="picker-popup"><label class="sr-only" for="country-filter">${text('countryFilter')}</label><input class="input" id="country-filter" type="search" placeholder="${text('countryFilterPlaceholder')}" autocomplete="off" disabled><select class="picker-list" id="country" size="7" aria-label="${text('country')}"><option value="">${text('chooseCountry')}</option></select><p id="country-status" class="geo-status" aria-live="polite"></p></div></details>
          <label class="label" for="city">${text('city')}</label><details class="search-picker" id="city-picker"><summary id="city-trigger"><span id="city-label">${text('chooseCity')}</span></summary><div class="picker-popup"><label class="sr-only" for="city-filter">${text('cityFilter')}</label><input class="input" id="city-filter" type="search" autocomplete="off" placeholder="${text('cityFilterPlaceholder')}" disabled><select class="picker-list" id="city" size="7" aria-label="${text('city')}" disabled><option value="">${text('chooseCity')}</option></select><button type="button" id="more-cities" data-variant="outline" class="btn btn-outline btn-sm" hidden>${text('loadMore')}</button></div></details>
          <div class="geo-actions"><button type="button" id="use-city" data-variant="outline" class="btn btn-outline btn-sm" disabled>${text('select')}</button></div><p id="city-status" class="geo-status" aria-live="polite"></p>
-         <button type="button" id="geo-details" class="geo-details-toggle" aria-pressed="false">${text('showDetailedPlaces')}</button><p class="geo-attribution"><a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a> · ${text('cityCoverage')}</p>
+         <button type="button" id="geo-details" class="toggle-button geo-details-toggle" aria-pressed="false">${text('showDetailedPlaces')}</button><p class="geo-attribution"><a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a> · ${text('cityCoverage')}</p>
         </div>
         <div id="geo-panel-place" class="geo-panel" role="tabpanel" aria-labelledby="geo-tab-place" hidden><div class="lookup"><div class="input-group"><input class="input" id="place-query" placeholder="${text('placeQuery')}" aria-label="${text('placeQuery')}"><button type="button" id="place-search" data-variant="outline" class="btn btn-outline">${text('search')}</button></div><div id="places" aria-live="polite"></div></div></div>
         <div id="geo-panel-ip" class="geo-panel" role="tabpanel" aria-labelledby="geo-tab-ip" hidden><label class="label" for="lookup-ip">${text('lookupAddress')}</label><input class="input mono" id="lookup-ip" placeholder="192.0.2.10"><div class="geo-actions"><button type="button" id="geoip" data-variant="outline" class="btn btn-outline btn-sm">${text('lookup')}</button><button type="button" id="use-network-ips" data-variant="outline" class="btn btn-outline btn-sm">${text('ipLookup')}</button></div><div id="geoip-results" aria-live="polite"></div><p class="geo-attribution">${meta.geoipAttribution==='DB-IP'?'<a href="https://db-ip.com" target="_blank" rel="noopener noreferrer">IP Geolocation by DB-IP</a>':meta.geoipAttribution==='MaxMind'?'<a href="https://www.maxmind.com/" target="_blank" rel="noopener noreferrer">GeoIP data by MaxMind</a>':''}</p></div>
        </details></div></div></section>
-      <section><div class="section-heading"><h2 class="section-label">${text('resources')}</h2>${help('intervalHelp')}</div><div class="field-grid">${field('architecture',select('architecture',optionList(['x86-64','ARM64','RISC-V 64',t('other')])))}${field('nodeType',select('nodeType',[{value:0,label:t('physical')},{value:1,label:t('vm')},{value:2,label:t('systemContainer')},{value:3,label:t('appContainer')},{value:7,label:t('other')}]))}</div><div class="field-grid resource-grid">${field('cpu',select('cpu',optionList(meta.cpu)))}${field('ram',select('ram',optionList(meta.ram)))}${field('storage',select('storage',optionList(meta.storage)))}</div><details class="recommendations"><summary>${text('recommendations')}</summary><div id="recommendations" class="suggestions"></div></details></section>
+      <section><div class="section-heading"><h2 class="section-label">${text('resources')}</h2>${help('intervalHelp')}</div><div class="field-grid">${field('architecture',select('architecture',optionList(['x86-64','ARM64','RISC-V 64',t('other')])))}${field('nodeType',select('nodeType',[{value:0,label:t('physical')},{value:1,label:t('vm')},{value:2,label:t('systemContainer')},{value:3,label:t('appContainer')},{value:7,label:t('other')}]))}</div><div class="field-grid resource-grid">${field('cpu',select('cpu',optionList(meta.cpu)))}${field('ram',select('ram',optionList(meta.ram)))}${field('storage',select('storage',optionList(meta.storage)))}</div><details class="recommendations"><summary>${text('recommendations')}</summary><div id="catalog-controls" class="catalog-controls"><label class="sr-only" for="plan-query">${text('planSearch')}</label><input id="plan-query" class="input" type="search" placeholder="${text('planSearch')}"><label class="sr-only" for="plan-family">${text('planFamily')}</label><select id="plan-family" class="select" aria-label="${text('planFamily')}"></select><button type="button" id="plan-match" class="toggle-button catalog-toggle" aria-pressed="false">${text('matchFields')}</button></div><div id="recommendations" class="plan-list"></div><div class="catalog-footer"><span id="plan-count" aria-live="polite"></span><button type="button" id="plan-more" class="btn btn-outline btn-sm" data-variant="outline">${text('loadMore')}</button><span id="catalog-date"></span></div></details></section>
       <section class="network-section"><h2 class="section-label">${text('network')}</h2><div class="field-grid">${field('ipv4','<input class="input mono" id="ipv4" placeholder="192.0.2.10" aria-label="IPv4" spellcheck="false">')}${field('ipv6','<input class="input mono" id="ipv6" placeholder="2001:db8::10" aria-label="IPv6" spellcheck="false">')}</div></section>
      </div>
     </form>
@@ -92,7 +99,7 @@ function mount(){
      <div class="card-header"><h2 class="card-title">${text('output')}</h2></div>
      <div class="card-body">
       <div class="output-fields"><label class="label">${text('prefix')}<input class="input" form="encode-form" id="prefix" value="${escape(meta.prefix)}" maxlength="1" pattern="[a-z]" required></label><label class="label">${text('domain')}<input class="input" form="encode-form" id="domain" value="${escape(meta.domain)}" required spellcheck="false"></label></div>
-      <label class="label">${text('lengthMode')}<select class="select" form="encode-form" id="mode"><option value="compact">${text('compact')}</option><option value="padded">${text('padded')}</option></select></label>
+      <label class="label" for="mode">${text('lengthMode')}</label><select class="select" form="encode-form" id="mode"><option value="compact">${text('compact')}</option><option value="padded">${text('padded')}</option></select>
       <div class="budget-block"><div class="section-heading"><h3>${text('used')}</h3>${help('capacityHelp')}</div><div class="budget"><span id="used-bits">—</span><span>/ 315 ${text('bits')}</span></div><meter id="budget-meter" min="0" max="315" value="0" aria-label="${text('used')}"></meter><div class="budget-meta"><span id="char-count">— / 63</span><span>${text('characters')}</span></div><span id="encoding-mode" class="sr-only">${text('pending')}</span></div>
       <button type="submit" form="encode-form" id="generate" class="btn w-100">${text('generate')}</button>
       <div class="hostname-block"><h3>${text('result')}</h3><p id="result-empty" class="text-secondary">${text('resultEmpty')}</p><output id="hostname" class="hostname" aria-live="polite"></output><p id="stale" class="text-warning" hidden>${text('stale')}</p><div id="result-actions" class="result-actions" hidden><button id="copy" data-variant="outline" class="btn btn-outline btn-sm">${text('copy')}</button><button id="export-result" data-variant="outline" class="btn btn-outline btn-sm">${text('export')}</button></div></div>
@@ -104,12 +111,11 @@ function mount(){
   </main>
  </div>`;
  $<HTMLSelectElement>('#language').value=lang;$<HTMLSelectElement>('#theme').value=theme;$<HTMLSelectElement>('#mode').value=meta.mode;
- $('#language').addEventListener('change',()=>{const d=current(),s=settings();lang=$<HTMLSelectElement>('#language').value;localStorage.setItem('pnd.language',lang);mount();restore(d);$<HTMLInputElement>('#prefix').value=s.prefix;$<HTMLInputElement>('#domain').value=s.domain;$<HTMLSelectElement>('#mode').value=s.mode;renderOutput();if(lastDecoded)renderDecoded(lastDecoded)});
+ $('#language').addEventListener('change',()=>{const d=current(),s=settings();lang=$<HTMLSelectElement>('#language').value;localStorage.setItem('pnd.language',lang);mount();restore(d);$<HTMLInputElement>('#prefix').value=s.prefix;$<HTMLInputElement>('#domain').value=s.domain;$<HTMLSelectElement>('#mode').value=s.mode;pickerUI?.refresh();renderOutput();if(lastDecoded)renderDecoded(lastDecoded)});
  $('#theme').addEventListener('change',()=>{theme=$<HTMLSelectElement>('#theme').value;localStorage.setItem('pnd.theme',theme);applyTheme()});
  document.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab!)));
- $('#encode-form').addEventListener('input',event=>{if((event.target as HTMLElement).closest('#geo-tools'))return;if(lastHostname){outputStale=true;$('#stale').hidden=false}schedulePreview()});
+ $('#encode-form').addEventListener('input',event=>{if((event.target as HTMLElement).closest('#geo-tools, #catalog-controls, .choice-filter'))return;if(lastHostname){outputStale=true;$('#stale').hidden=false}schedulePreview()});
  for(const key of ['prefix','domain','mode'])$('#'+key).addEventListener('input',invalidate);
- for(const key of ['provider','cpu','ram'])$('#'+key).addEventListener('change',recommend);
  $('#new-id').addEventListener('click',async()=>{if(!confirm(t('confirmNewId')))return;try{nodeId=(await api<{nodeId:string}>('/api/node-id',{})).nodeId;$<HTMLInputElement>('#node-id').value=nodeId;invalidate()}catch(e){showError(e)}});
  $('#encode-form').addEventListener('submit',async ev=>{ev.preventDefault();clearError();const d=current();try{const result=await api<{descriptor:Descriptor;hostname:string;preview:Preview}>('/api/encode',{descriptor:d,...settings()});lastOutput=result.descriptor;lastHostname=result.hostname;outputStale=false;renderOutput();renderPreview(result.preview)}catch(e){showError(e)}});
  $('#copy').addEventListener('click',async()=>{const revision=outputRevision,hostname=lastHostname;try{if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(hostname);else{const el=document.createElement('textarea');el.value=hostname;document.body.append(el);el.select();if(!document.execCommand('copy'))throw Error(t('error'));el.remove()}if(revision===outputRevision)$('#copy').textContent=t('copied')}catch(e){showError(e)}});
@@ -121,6 +127,8 @@ function mount(){
  $('#brand-home').addEventListener('click',()=>switchTab('encode'));
  setupGeoTools();
  if(session.required)$('#logout').addEventListener('click',async()=>{await api('/auth/logout',{});location.reload()});
+ catalogUI=setupCatalog(meta,t,current,d=>{restore(d);invalidate()});
+ pickerUI=setupPickers($('#app'),t);
  switchTab(tab);restore({nodeId});
 }
 function switchTab(next:string){tab=next;$('.page-heading h1').textContent=t(next==='encode'?'builder':'decode');for(const k of ['encode','decode'])$('#'+k+'-panel').hidden=k!==next;document.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach(b=>{b.classList.toggle('active',b.dataset.tab===next);b.setAttribute('aria-current',b.dataset.tab===next?'page':'false')});clearError()}
@@ -148,39 +156,17 @@ async function resolveDecodedLocation(id:number,seq:number,locale:string){
  }catch{if(seq===decodedLocationSequence){$('#decoded-country').textContent=t('locationNameUnavailable');$('#decoded-city').textContent=t('locationNameUnavailable')}}
 }
 function download(d:Descriptor){const blob=new Blob([JSON.stringify({format:'pnd-export-v1',descriptor:d},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`pnd-${d.nodeId}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
-function recommend(){if(!meta)return;const d=current();
-for(const key of ['cpu','ram','storage'] as const){
- const input=$<HTMLSelectElement>('#'+key),saved=input.value;
- const matches=meta.plans.filter(p=>(d.provider===undefined||p.provider===d.provider)&&(key==='cpu'||d.cpu===undefined||p.cpu===d.cpu)&&(key!=='storage'||d.ram===undefined||p.ram===d.ram));
- const suggested=new Set(matches.map(p=>p[key]));
- input.replaceChildren(new Option(t('none'),''));
- for(const isRecommended of [true,false]){const group=document.createElement('optgroup');group.label=t(isRecommended?'recommendedOptions':'allOptions');meta[key].forEach((label,value)=>{if(suggested.has(value)===isRecommended)group.append(new Option(label,String(value)))});if(group.children.length)input.append(group)}
- input.value=saved;
-}
-let plans=meta.plans.filter(p=>d.provider===undefined||p.provider===d.provider);if(d.cpu!==undefined)plans=plans.filter(p=>p.cpu===d.cpu);if(d.ram!==undefined)plans=plans.filter(p=>p.ram===d.ram);const unique=new Map<string,Plan>();for(const p of plans)unique.set(`${p.cpu}/${p.ram}/${p.storage}`,p);const host=$('#recommendations');host.replaceChildren();for(const p of Array.from(unique.values()).slice(0,4)){const b=document.createElement('button');b.type='button';b.dataset.variant='outline';b.className='btn btn-outline btn-sm suggestion';b.textContent=`${meta.cpu[p.cpu]} CPU · ${meta.ram[p.ram]} GiB · ${meta.storage[p.storage]} GiB`;b.title=t('apply');b.addEventListener('click',()=>{restore({...current(),cpu:p.cpu,ram:p.ram,storage:p.storage});invalidate()});host.append(b)}if(!host.childElementCount){const p=document.createElement('p');p.className='muted';p.textContent=t('resourceMismatch');host.append(p)}}
+function recommend(){catalogUI?.refresh()}
 async function searchPlaces(){clearError();const host=$('#places');host.replaceChildren();if(!meta.placesEnabled){host.textContent=t('places_unavailable');return}try{const rows=await api<{geonameId:number;name:string;countryName:string;adminName1:string;fcode:string}[]>('/api/places?q='+encodeURIComponent($<HTMLInputElement>('#place-query').value));for(const row of rows||[]){const b=document.createElement('button');b.type='button';b.dataset.variant='outline';b.className='btn btn-outline place-result';b.textContent=`${row.name} · ${row.adminName1} · ${row.countryName} · ${row.fcode} · ${row.geonameId}`;b.addEventListener('click',()=>{restore({...current(),geo:row.geonameId});invalidate()});host.append(b)}if(!host.childElementCount)host.textContent=t('noResults')}catch(e){showError(e)}}
 function geoStatus(message:string){$('#city-status').textContent=message}
 function applyLocation(id:number){restore({...current(),geo:id});invalidate()}
 function syncPicker(kind:string){const select=$<HTMLSelectElement>('#'+kind);$('#'+kind+'-label').textContent=select.selectedOptions[0]?.textContent||t(kind==='country'?'chooseCountry':'chooseCity')}
-function setupSearchPickers(){
- pickerEvents=new AbortController();
- for(const kind of ['country','city']){
-  const picker=$<HTMLDetailsElement>('#'+kind+'-picker'),input=$<HTMLInputElement>('#'+kind+'-filter'),select=$<HTMLSelectElement>('#'+kind);
-  const close=()=>{picker.open=false;$('#'+kind+'-trigger').focus()};
-  picker.addEventListener('toggle',()=>{if(picker.open){$<HTMLDetailsElement>('#'+(kind==='country'?'city':'country')+'-picker').open=false;if(!input.disabled)input.focus()}});
-  select.addEventListener('change',()=>syncPicker(kind));
-  select.addEventListener('click',event=>{if(event.target instanceof HTMLOptionElement)close()});
-  picker.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();close()}else if(event.key==='Enter'&&event.target===select){event.preventDefault();close()}else if(event.key==='ArrowDown'&&event.target===input){event.preventDefault();select.focus()}});
-  document.addEventListener('pointerdown',event=>{if(!picker.contains(event.target as Node))picker.open=false},{signal:pickerEvents.signal});
- }
-}
 function setupGeoTools(){
  const generation=mountGeneration;
 
  const enabled=availableGeoTools();
  $('#geo-tools').hidden=enabled.length===0;
  if(!enabled.length)return;
- if(meta.countriesEnabled)setupSearchPickers();
  const toolbar=$('.geo-toolbar');
  toolbar.addEventListener('click',event=>{const button=(event.target as HTMLElement).closest<HTMLButtonElement>('[data-geo-tab]');if(!button)return;switchGeoTool(button.dataset.geoTab!)});
  toolbar.addEventListener('keydown',event=>{const key=event.key;if(!['ArrowLeft','ArrowRight','Home','End'].includes(key))return;event.preventDefault();const buttons=Array.from(toolbar.querySelectorAll<HTMLButtonElement>('[data-geo-tab]')).filter(b=>!b.hidden);let i=buttons.indexOf(document.activeElement as HTMLButtonElement);i=key==='Home'?0:key==='End'?buttons.length-1:(i+(key==='ArrowRight'?1:buttons.length-1))%buttons.length;switchGeoTool(buttons[i].dataset.geoTab!);buttons[i].focus()});

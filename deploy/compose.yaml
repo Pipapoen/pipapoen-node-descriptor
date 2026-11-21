@@ -1,7 +1,7 @@
 name: pnd
 services:
   init-key:
-    image: ${PND_IMAGE:-ghcr.io/pipapoen/pipapoen-node-descriptor:26.1.0-rc.1}
+    image: ${PND_IMAGE:-ghcr.io/pipapoen/pipapoen-node-descriptor:26.1.0-rc.2}
     user: "0:0"
     command: ["-init-key", "/keys/pnd-key"]
     volumes:
@@ -13,7 +13,7 @@ services:
     pids_limit: 16
     restart: "no"
   pnd:
-    image: ${PND_IMAGE:-ghcr.io/pipapoen/pipapoen-node-descriptor:26.1.0-rc.1}
+    image: ${PND_IMAGE:-ghcr.io/pipapoen/pipapoen-node-descriptor:26.1.0-rc.2}
     depends_on:
       init-key:
         condition: service_completed_successfully

@@ -1,0 +1,309 @@
+[
+  {
+    "id": 0,
+    "name": "Self-managed",
+    "aliases": [],
+    "website": "https://github.com/Pipapoen/pipapoen-node-descriptor"
+  },
+  {
+    "id": 1,
+    "name": "DigitalOcean",
+    "aliases": [
+      "DO"
+    ],
+    "website": "https://www.digitalocean.com"
+  },
+  {
+    "id": 2,
+    "name": "Akamai Cloud / Linode",
+    "aliases": [
+      "Linode",
+      "Akamai"
+    ],
+    "website": "https://www.linode.com"
+  },
+  {
+    "id": 3,
+    "name": "Vultr",
+    "aliases": [],
+    "website": "https://www.vultr.com"
+  },
+  {
+    "id": 4,
+    "name": "AWS",
+    "aliases": [
+      "Amazon Web Services",
+      "EC2",
+      "Lightsail"
+    ],
+    "website": "https://aws.amazon.com"
+  },
+  {
+    "id": 5,
+    "name": "Hetzner",
+    "aliases": [
+      "Hetzner Cloud"
+    ],
+    "website": "https://www.hetzner.com"
+  },
+  {
+    "id": 6,
+    "name": "OVHcloud",
+    "aliases": [
+      "OVH"
+    ],
+    "website": "https://www.ovhcloud.com"
+  },
+  {
+    "id": 7,
+    "name": "Scaleway",
+    "aliases": [
+      "Online.net"
+    ],
+    "website": "https://www.scaleway.com"
+  },
+  {
+    "id": 8,
+    "name": "UpCloud",
+    "aliases": [],
+    "website": "https://upcloud.com"
+  },
+  {
+    "id": 9,
+    "name": "Oracle Cloud",
+    "aliases": [
+      "OCI",
+      "Oracle Cloud Infrastructure"
+    ],
+    "website": "https://www.oracle.com/cloud/"
+  },
+  {
+    "id": 10,
+    "name": "Google Cloud",
+    "aliases": [
+      "GCP",
+      "Google Compute Engine"
+    ],
+    "website": "https://cloud.google.com"
+  },
+  {
+    "id": 11,
+    "name": "Microsoft Azure",
+    "aliases": [
+      "Azure"
+    ],
+    "website": "https://azure.microsoft.com"
+  },
+  {
+    "id": 12,
+    "name": "Alibaba Cloud",
+    "aliases": [
+      "Aliyun",
+      "Alibaba ECS"
+    ],
+    "website": "https://www.alibabacloud.com"
+  },
+  {
+    "id": 13,
+    "name": "Tencent Cloud",
+    "aliases": [
+      "Tencent CVM"
+    ],
+    "website": "https://www.tencentcloud.com"
+  },
+  {
+    "id": 14,
+    "name": "IONOS",
+    "aliases": [
+      "1&1"
+    ],
+    "website": "https://www.ionos.com"
+  },
+  {
+    "id": 15,
+    "name": "Contabo",
+    "aliases": [],
+    "website": "https://contabo.com"
+  },
+  {
+    "id": 16,
+    "name": "netcup",
+    "aliases": [],
+    "website": "https://www.netcup.com"
+  },
+  {
+    "id": 17,
+    "name": "OneProvider",
+    "aliases": [
+      "OneCloud"
+    ],
+    "website": "https://oneprovider.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 18,
+    "name": "DediRock",
+    "aliases": [
+      "DEDIROCK"
+    ],
+    "website": "https://dedirock.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 19,
+    "name": "RackNerd",
+    "aliases": [],
+    "website": "https://www.racknerd.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 20,
+    "name": "BuyVM",
+    "aliases": [
+      "Frantech"
+    ],
+    "website": "https://buyvm.net",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 21,
+    "name": "HostHatch",
+    "aliases": [],
+    "website": "https://hosthatch.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 22,
+    "name": "GreenCloud",
+    "aliases": [
+      "GreenCloudVPS"
+    ],
+    "website": "https://greencloudvps.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 23,
+    "name": "Crunchbits",
+    "aliases": [],
+    "website": "https://crunchbits.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 24,
+    "name": "CloudCone",
+    "aliases": [],
+    "website": "https://cloudcone.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 25,
+    "name": "Hostinger",
+    "aliases": [],
+    "website": "https://www.hostinger.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 26,
+    "name": "Kamatera",
+    "aliases": [],
+    "website": "https://www.kamatera.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 27,
+    "name": "Leaseweb",
+    "aliases": [
+      "LeaseWeb"
+    ],
+    "website": "https://www.leaseweb.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 28,
+    "name": "Servers.com",
+    "aliases": [],
+    "website": "https://www.servers.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 29,
+    "name": "DataPacket",
+    "aliases": [],
+    "website": "https://www.datapacket.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 30,
+    "name": "V.PS",
+    "aliases": [
+      "xTom",
+      "VPS"
+    ],
+    "website": "https://v.ps",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 31,
+    "name": "BandwagonHost",
+    "aliases": [
+      "Bandwagon"
+    ],
+    "website": "https://bandwagonhost.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 32,
+    "name": "DMIT",
+    "aliases": [],
+    "website": "https://www.dmit.io",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 33,
+    "name": "LightNode",
+    "aliases": [],
+    "website": "https://www.lightnode.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 34,
+    "name": "Servarica",
+    "aliases": [],
+    "website": "https://servarica.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 35,
+    "name": "HostDare",
+    "aliases": [],
+    "website": "https://hostdare.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 36,
+    "name": "Clouvider",
+    "aliases": [],
+    "website": "https://www.clouvider.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 37,
+    "name": "InterServer",
+    "aliases": [],
+    "website": "https://www.interserver.net",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 38,
+    "name": "ScalaHosting",
+    "aliases": [],
+    "website": "https://www.scalahosting.com",
+    "checkedAt": "2026-11-21"
+  },
+  {
+    "id": 65535,
+    "name": "Other",
+    "aliases": [],
+    "website": null
+  }
+]
