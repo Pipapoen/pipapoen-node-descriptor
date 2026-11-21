@@ -7,7 +7,7 @@ COPY tsconfig.json vite.config.ts postcss.config.mjs ./
 COPY web ./web
 RUN pnpm run build
 
-FROM golang:1.26-bookworm AS backend
+FROM golang:1.26.11-bookworm AS backend
 WORKDIR /src
 COPY go.mod go.sum ./
 RUN go mod download
