@@ -137,7 +137,7 @@ DB-IP Lite city records supply names and approximate locations rather than a cit
 
 Published native archives contain the application and license/documentation files. Extract the archive, create a `secrets` directory, and run `pnd -generate-key secrets/pnd-key` once. Start `pnd` from that directory and open `http://localhost:8080`. Use `./pnd` on Linux and `./pnd.exe` in PowerShell; the same `PND_*` environment settings apply. Back up the key before upgrades. Linux extraction tools should preserve executable permissions; use `chmod +x pnd` if needed.
 
-Use Go 1.26 or newer, Node.js 24, and the pinned pnpm version. From the repository root:
+Use Go 1.26.11 or newer, Node.js 24, and the pinned pnpm version. From the repository root:
 
 ```sh
 pnpm install --frozen-lockfile

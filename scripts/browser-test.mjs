@@ -9,6 +9,7 @@ async function filterPicker(kind,value){await openPicker(kind);if(kind==='city')
 async function choosePicker(kind,value){await openPicker(kind);await page.locator('#'+kind).selectOption(value);await page.locator('#'+kind).press('Enter')}
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 try {
+ await page.context().grantPermissions(['clipboard-read','clipboard-write'],{origin:new URL(base).origin});
  await page.goto(base);await page.locator('#node-id').waitFor();
  const capabilities=await (await page.request.get(base+'/api/meta')).json();
  assert.equal(await page.locator('.header-title').count(),0);
@@ -75,6 +76,7 @@ await page.locator('#ipv6').fill('2001:db8::10');
  await page.waitForFunction(()=>document.querySelector('#hostname')?.textContent?.split('.')[0].length===63);
  const padded=await page.locator('#hostname').textContent();assert.equal(padded.split('.')[0].length,63);
  await page.locator('#copy').click();await page.waitForFunction(()=>document.querySelector('#copy').textContent==='Copied');
+ if(await page.evaluate(()=>window.isSecureContext))assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),padded);
  const regenerated=page.waitForResponse(r=>r.url().endsWith('/api/encode'));
  await page.locator('#generate').click();await regenerated;
  await page.waitForFunction(()=>document.querySelector('#copy').textContent==='Copy');
