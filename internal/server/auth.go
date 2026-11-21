@@ -118,23 +118,23 @@ func (a *auth) callback(w http.ResponseWriter, r *http.Request) {
 	t, ok := a.read(r, "pnd_flow")
 	a.cookie(w, "pnd_flow", "", -1)
 	if !ok || t.State == "" || subtle.ConstantTimeCompare([]byte(t.State), []byte(r.URL.Query().Get("state"))) != 1 || r.URL.Query().Get("code") == "" {
-		http.Error(w, "Invalid sign-in response", 400)
+		http.Redirect(w, r, "/?auth=error", http.StatusSeeOther)
 		return
 	}
 	ctx := oidc.ClientContext(r.Context(), a.client)
 	tok, err := a.oauth.Exchange(ctx, r.URL.Query().Get("code"), oauth2.VerifierOption(t.Verifier))
 	if err != nil {
-		http.Error(w, "Sign-in failed", 401)
+		http.Redirect(w, r, "/?auth=error", http.StatusSeeOther)
 		return
 	}
 	raw, ok := tok.Extra("id_token").(string)
 	if !ok {
-		http.Error(w, "Missing ID token", 401)
+		http.Redirect(w, r, "/?auth=error", http.StatusSeeOther)
 		return
 	}
 	id, err := a.verifier.Verify(ctx, raw)
 	if err != nil || subtle.ConstantTimeCompare([]byte(id.Nonce), []byte(t.Nonce)) != 1 {
-		http.Error(w, "Invalid ID token", 401)
+		http.Redirect(w, r, "/?auth=error", http.StatusSeeOther)
 		return
 	}
 	now := a.now()

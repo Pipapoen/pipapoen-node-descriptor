@@ -6,7 +6,7 @@ PND uses Git Flow with permanent `main` and `develop` branches. Require the `CI 
 
 Create `release/26.1.0` from `develop` for the first release. Candidate versions use `26.1.0-rc.1`; stable versions use `26.1.0`. Update `package.json`, `internal/buildinfo/version.go`, source Compose images, and the deployment bundle defaults together. Run `python scripts/check-release.py` to check consistency. Product versions and descriptor versions are independent.
 
-Descriptor format `0` retains the implemented pattern-assisted framing and projected resource dictionary. Freeze its field meanings, tier boundaries, provider codes and dictionary entries before the first stable release. New interpretations require a new descriptor version. UI suggestions and geographic names can evolve independently. Review format vectors and compatibility notes as part of release review.
+Descriptor format `1` is frozen in [FORMAT_1.md](FORMAT_1.md), including its field meanings, canonical encoding and immutable dictionary. The decoder retains format-0 support. New interpretations require a new descriptor version. UI suggestions and geographic names evolve independently. Preserve the fixed format-0/1 vectors during dependency upgrades.
 
 ## GitHub setup
 
@@ -53,3 +53,9 @@ Build with `pnpm run build:demo` and test with `pnpm run test:demo`. The build c
 ## Release evidence
 
 Record the reviewed source commit, CI run, package checksums, container digest, platform coverage, dependency scan date, and deployment test outcome. Live Authentik verification remains an operator integration check until a real client is available. GeoNames and DB-IP live integration were verified in the MVP environment; CI uses local fixtures and optional-service checks to avoid account and upstream availability dependencies.
+
+## First stable release gate
+
+Candidate `26.1.0-rc.4` uses the frozen format-1 layout and the same feature set intended for `26.1.0`. Promotion changes product version references and release status. Functional changes require another candidate. Verify native/WASM vectors, Windows/Linux CI, race and fuzz checks, runtime licenses, secret/vulnerability scans, source and packaged-container starts, anonymous assets, an rc.3-to-candidate upgrade with format-0 decoding, and candidate restart with format-1 decoding. OIDC was tested with a live Authentik 2026.8.6 instance, including login, logout and absolute expiry; temporary credentials and providers were removed.
+
+Stable publication uses the existing tag workflow after final maintainer acceptance. Recheck the resulting versioned image, stable aliases and artifact checksums. Candidate releases leave stable aliases unchanged. Released candidate artifacts stay immutable.

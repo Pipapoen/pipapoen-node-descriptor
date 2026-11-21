@@ -1,6 +1,6 @@
 # PND Technical Specification
 
-Status: release candidate `26.1.0-rc.3`, descriptor format `0` under compatibility review for the first stable release.
+Status: release candidate `26.1.0-rc.4`, descriptor format `1` frozen for the first stable release, with format-0 decoding compatibility.
 
 ## Architecture
 
@@ -12,7 +12,7 @@ The three geographic helpers have independent deployment flags: `PND_COUNTRY_CIT
 
 ## Descriptor format
 
-Labels use `<prefix>0<ciphertext>` under a configurable domain. The prefix is one lowercase letter; `0` selects the experimental codec. Each complete label is limited to 63 ASCII characters.
+Labels use `<prefix>1<ciphertext>` under a configurable domain. The prefix is one lowercase letter; `1` selects the frozen codec. Existing format-0 names remain decodable. Each complete label is limited to 63 ASCII characters.
 
 | Field | Bits | Semantics |
 | --- | ---: | --- |
@@ -27,7 +27,7 @@ Labels use `<prefix>0<ciphertext>` under a configurable domain. The prefix is on
 | IPv4 | 32 | Optional complete address |
 | IPv6 | 128 | Optional complete address without a zone identifier |
 
-Optional fields are independent. Identifiers and addresses recover exactly; resources recover to their selected intervals. Code zero is distinct from an absent field. Interval boundaries and Provider IDs are described in [the format candidate](FORMAT_CANDIDATE.md).
+Optional fields are independent. Identifiers and addresses recover exactly; resources recover to their selected intervals. Code zero is distinct from an absent field. Exact bit order, interval boundaries, canonical rules and compatibility are specified in [Descriptor Format 1](FORMAT_1.md).
 
 Packing uses a leading-one sentinel, a pattern-assisted selection header, fixed/varint geographic and provider integers, independent architecture/node-type values, and a projected CPU/RAM/storage dictionary with direct-field fallback. The embedded dictionary freezes 73 resource triples. Canonical-form and structural validation run during decoding. [The codec evaluation](CODEC_COMPARISON.md) explains the comparison.
 
@@ -35,7 +35,7 @@ The integer becomes lowercase Base36. Compact mode encrypts its shortest represe
 
 ## Encryption and keys
 
-Format `0` uses FF1, radix 36, AES-256, and tweak `PND:format-0:ff1:aes256` over the entire payload. The FF1 dependency is pinned in `go.mod` and retains its Apache-2.0 license. PND source uses MIT.
+Format `1` uses FF1, radix 36, AES-256, and tweak `PND:format-1:ff1:aes256` over the entire payload. The FF1 dependency is pinned in `go.mod` and retains its Apache-2.0 license. PND source uses MIT.
 
 The service loads one 32-byte key from `PND_KEY_FILE` at startup. Missing or malformed keys prevent startup. Replacing the file and restarting changes the key. Names carry a format version and no key-generation identifier. Operators export node data to regenerate names after key changes and update DNS and downstream URLs.
 
@@ -85,4 +85,6 @@ GitHub workflows verify the application, publish versioned GHCR images and relea
 
 ## Provider catalog
 
-The review snapshot adds searchable provider names/aliases and product-series recommendations with explicit source units, provenance and optional included storage. See [catalog maintenance and ID allocation](CATALOG.md). The format-0 decoding dictionary remains frozen.
+The review snapshot adds searchable provider names/aliases and product-series recommendations with explicit source units, provenance and optional included storage. See [catalog maintenance and ID allocation](CATALOG.md). The shared format-0/1 decoding dictionary remains frozen.
+
+OIDC browser entry redirects unauthenticated users directly to the identity provider. Local logout displays a confirmation with a sign-in action. Failed callbacks display a retry page; API session expiry starts a new OIDC flow.

@@ -15,12 +15,14 @@ import (
 	"github.com/joshuajorel/scrambler/ff1"
 )
 
-const Version = "0"
+// Version is the default encoding format. Published formats remain decodable.
+const Version = "1"
 
 var alphabet = "0123456789abcdefghijklmnopqrstuvwxyz"
 var patterns = []uint64{0, 3, 124, 112, 114, 126, 127, 384, 387, 511, 507, 255, 383, 1, 2, 128}
 var widths = []int{32, 16, 2, 3, 4, 4, 3, 32, 128}
-var tweak = []byte("PND:format-0:ff1:aes256")
+var tweak = []byte("PND:format-1:ff1:aes256")
+var legacyTweak = []byte("PND:format-0:ff1:aes256")
 
 type Descriptor struct {
 	NodeID       string  `json:"nodeId"`
@@ -537,7 +539,13 @@ func (e *Engine) Decode(input string) (Descriptor, error) {
 	if len(label) < 19 || len(label) > 63 || label[0] < 'a' || label[0] > 'z' {
 		return Descriptor{}, errors.New("invalid label length or prefix")
 	}
-	if label[1:2] != Version {
+	var decodingTweak []byte
+	switch label[1:2] {
+	case "0":
+		decodingTweak = legacyTweak
+	case Version:
+		decodingTweak = tweak
+	default:
 		return Descriptor{}, errors.New("unsupported format version")
 	}
 	for _, c := range label[2:] {
@@ -545,7 +553,7 @@ func (e *Engine) Decode(input string) (Descriptor, error) {
 			return Descriptor{}, errors.New("invalid label character")
 		}
 	}
-	pt, err := e.cipher.Decrypt(label[2:], tweak)
+	pt, err := e.cipher.Decrypt(label[2:], decodingTweak)
 	if err != nil {
 		return Descriptor{}, errors.New("cannot decode label")
 	}
