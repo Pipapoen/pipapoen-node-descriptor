@@ -30,7 +30,7 @@ const escape=(s:string)=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const text=(s:string)=>escape(t(s));
 function applyTheme(){const resolved=theme==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):theme;document.documentElement.dataset.theme=resolved;document.documentElement.classList.toggle('dark',resolved==='dark')}
 applyTheme();matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyTheme);
-async function api<T>(path:string,data?:unknown):Promise<T>{const {ok,result}=await request(path,data);if(!ok)throw new Error(t(result.error||'error'));return result}
+async function api<T>(path:string,data?:unknown):Promise<T>{const {ok,result}=await request(path,data);if(!ok){if(result.error==='login_required'&&session.required)location.replace('/auth/login');throw new Error(t(result.error||'error'))}return result}
 function help(key:string){return `<details class="help"><summary aria-label="${text('help')}">?</summary><p>${text(key)}</p></details>`}
 function field(key:string,input:string){return `<div class="field"><label class="label" for="${key}">${text(key)}</label>${input}</div>`}
 function select(key:string,options:{value:number;label:string}[]){
@@ -126,7 +126,7 @@ function mount(){
  $('#place-search').addEventListener('click',searchPlaces);$('#geoip').addEventListener('click',()=>lookupIP(false));$('#use-network-ips').addEventListener('click',()=>lookupIP(true));
  $('#brand-home').addEventListener('click',()=>switchTab('encode'));
  setupGeoTools();
- if(session.required)$('#logout').addEventListener('click',async()=>{await api('/auth/logout',{});location.reload()});
+ if(session.required)$('#logout').addEventListener('click',()=>void logout());
  catalogUI=setupCatalog(meta,t,current,d=>{restore(d);invalidate()});
  pickerUI=setupPickers($('#app'),t);
  switchTab(tab);restore({nodeId});
@@ -220,5 +220,31 @@ async function lookupIP(useNetwork:boolean){
  }
  const note=document.createElement('p');note.className='muted';note.textContent=t('locationEstimate');host.append(note);
 }
-async function start(){try{session=await api('/api/session');if(session.required&&!session.authenticated){$('#app').innerHTML=`<main class="login card"><div class="card-body"><p>PND ${escape(session.brandName||'')}</p><h1>${text('signInTitle')}</h1><p>${text('signInText')}</p><a class="btn" href="/auth/login">${text('login')}</a></div></main>`;return}meta=await api('/api/meta');nodeId=(await api<{nodeId:string}>('/api/node-id',{})).nodeId;mount()}catch(e){$('#app').textContent=e instanceof Error?e.message:t('error')}}
+type AuthStatus='signedOut'|'signInError'|'signOutError'|'serviceError';
+function authStatus(kind:AuthStatus){
+ pickerUI?.destroy();clearTimeout(timer);clearTimeout(cityTimer);++citySequence;
+ document.documentElement.lang=lang;
+ const success=kind==='signedOut';
+ const mark=success?'<path d="m6 12 4 4 8-8"/>':'<path d="m8 8 8 8M16 8l-8 8"/>';
+ const action=kind==='signedOut'?'signInAgain':kind==='serviceError'?'reloadPage':kind==='signOutError'?'logout':'retrySignIn';
+ $('#app').innerHTML=`<div class="auth-shell"><header class="app-header"><a class="brand-link" href="/"><strong>PND</strong>${session.brandName?`<span class="brand-name">${escape(session.brandName)}</span>`:''}</a></header><main class="auth-status"><section class="auth-status-panel" aria-labelledby="auth-title"><div class="auth-status-icon ${success?'is-success':'is-error'}" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${mark}</svg></div><h1 id="auth-title">${text(kind+'Title')}</h1><p class="auth-message" role="${success?'status':'alert'}">${text(kind+'Text')}</p><button type="button" class="btn" id="auth-action">${text(action)}</button></section></main></div>`;
+ $('#auth-action').onclick=()=>{if(kind==='serviceError')location.reload();else if(kind==='signOutError')void logout();else location.assign('/auth/login')};
+}
+async function logout(){
+ try{await api('/auth/logout',{});location.replace('/?auth=logged-out')}
+ catch{authStatus('signOutError')}
+}
+async function start(){
+ try{
+  session=await api('/api/session');
+  if(session.required&&!session.authenticated){
+   const state=new URLSearchParams(location.search).get('auth');
+   if(state==='logged-out')authStatus('signedOut');
+   else if(state==='error')authStatus('signInError');
+   else location.replace('/auth/login');
+   return;
+  }
+  meta=await api('/api/meta');nodeId=(await api<{nodeId:string}>('/api/node-id',{})).nodeId;mount();
+ }catch{authStatus('serviceError')}
+}
 void start();

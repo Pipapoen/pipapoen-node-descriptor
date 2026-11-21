@@ -58,12 +58,13 @@ Open **Decode**, paste a hostname, label, or URL, and select **Decode hostname**
 
 ![Decoding a hostname and recovering node details](docs/images/decode.png)
 
-Screenshots use example data. Keep exported node files when upgrading the MVP.
+Screenshots use example data. Keep exported node files and the encryption key when upgrading.
 
 ## Documentation
 
 - [Deployment and configuration](docs/DEPLOYMENT.md)
 - [Technical specification](docs/TECHNICAL.md)
+- [Descriptor format](docs/FORMAT_1.md)
 - [Contributing](.github/CONTRIBUTING.md)
 - [Release operations](docs/RELEASING.md)
 - [Translation contributions](docs/TRANSLATING.md)

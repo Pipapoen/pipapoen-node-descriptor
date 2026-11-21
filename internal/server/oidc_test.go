@@ -78,8 +78,13 @@ func TestOIDCFlowAndAPIProtection(t *testing.T) {
 	bad.AddCookie(flow)
 	w := httptest.NewRecorder()
 	app.ServeHTTP(w, bad)
-	if w.Code != 400 {
+	if w.Code != http.StatusSeeOther || w.Header().Get("Location") != "/?auth=error" {
 		t.Fatal("bad state accepted")
+	}
+	for _, c := range w.Result().Cookies() {
+		if c.Name == "pnd_session" && c.MaxAge > 0 {
+			t.Fatal("invalid callback created a session")
+		}
 	}
 	callback := httptest.NewRequest("GET", "/auth/callback?code=test&state="+url.QueryEscape(dest.Query().Get("state")), nil)
 	callback.AddCookie(flow)
@@ -119,7 +124,12 @@ func TestOIDCFlowAndAPIProtection(t *testing.T) {
 	nonce = "wrong-nonce"
 	w = httptest.NewRecorder()
 	app.ServeHTTP(w, callback)
-	if w.Code != 401 {
+	if w.Code != http.StatusSeeOther || w.Header().Get("Location") != "/?auth=error" {
 		t.Fatal("bad nonce accepted")
+	}
+	for _, c := range w.Result().Cookies() {
+		if c.Name == "pnd_session" && c.MaxAge > 0 {
+			t.Fatal("invalid nonce created a session")
+		}
 	}
 }
