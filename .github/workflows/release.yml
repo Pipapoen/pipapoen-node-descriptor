@@ -82,10 +82,10 @@ jobs:
           PRERELEASE: ${{ steps.release.outputs.prerelease }}
           IMAGE_DIGEST: ${{ steps.image.outputs.digest }}
         run: |
-          printf '%s\n' "ghcr.io/pipapoen/pipapoen-node-descriptor@$IMAGE_DIGEST" > dist/release/IMAGE_DIGEST
+          printf '%s\n' "ghcr.io/pipapoen/pipapoen-node-descriptor@$IMAGE_DIGEST" > build/release/IMAGE_DIGEST
           flags=()
           if [ "$PRERELEASE" = true ]; then flags+=(--prerelease); fi
-          gh release create "$TAG" --verify-tag --draft --latest=false --generate-notes "${flags[@]}" dist/release/*
+          gh release create "$TAG" --verify-tag --draft --latest=false --generate-notes "${flags[@]}" build/release/*
           gh release edit "$TAG" --draft=false --latest=false
       - name: Promote stable image aliases
         if: steps.release.outputs.prerelease == 'false'

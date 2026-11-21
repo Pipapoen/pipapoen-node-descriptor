@@ -4,11 +4,11 @@
   "version": "26.1.0-rc.2",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "tsc --noEmit && vite build",
+    "dev": "vite --config web/vite.config.ts --host 127.0.0.1",
+    "build": "tsc --noEmit -p web/tsconfig.json && vite build --config web/vite.config.ts",
     "check:locales": "node scripts/check-locales.mjs",
     "test:browser": "node scripts/browser-test.mjs",
-    "build:demo": "node scripts/build-demo.mjs && tsc --noEmit && vite build --config vite.demo.config.ts",
+    "build:demo": "node scripts/build-demo.mjs && tsc --noEmit -p web/tsconfig.json && vite build --config web/vite.demo.config.ts",
     "test:demo": "node scripts/demo-test.mjs",
     "check:release": "python scripts/check-release.py"
   },

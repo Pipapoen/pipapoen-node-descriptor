@@ -11,7 +11,7 @@ import zipfile
 
 root = Path(__file__).resolve().parents[1]
 version = json.loads((root / 'package.json').read_text())['version']
-output = root / 'dist/release'
+output = root / 'build/release'
 output.mkdir(parents=True, exist_ok=True)
 
 
@@ -38,9 +38,9 @@ with tempfile.TemporaryDirectory() as directory:
                 if file.is_file(): dest.write(file, file.relative_to(folder))
         archives.append(archive)
     folder = temp / 'compose'
-    shutil.copytree(root / 'deploy', folder, ignore=shutil.ignore_patterns('.env'))
+    shutil.copytree(root / 'deploy', folder, ignore=shutil.ignore_patterns('.env', 'source.env.example', 'overlays'))
     for name in ('compose.geoip-auto.yaml', 'compose.oidc.yaml', 'compose.geoip.yaml'):
-        text = (root / name).read_text(encoding='utf-8').replace(f'pnd:{version}', '${PND_IMAGE:-ghcr.io/pipapoen/pipapoen-node-descriptor:' + version + '}')
+        text = (root / 'deploy/overlays' / name).read_text(encoding='utf-8').replace(f'pnd:{version}', '${PND_IMAGE:-ghcr.io/pipapoen/pipapoen-node-descriptor:' + version + '}')
         (folder / name).write_text(text, encoding='utf-8')
     notices(folder)
     archive = output / f'pnd-{version}-compose.zip'
