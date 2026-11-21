@@ -222,7 +222,7 @@ func (a *App) defaults(v *request) error {
 	return nil
 }
 func (a *App) meta(w http.ResponseWriter, r *http.Request) {
-	writeJSON(w, map[string]any{"version": buildinfo.Version, "format": codec.Version, "brandName": a.Config.BrandName, "prefix": a.Config.Prefix, "domain": a.Config.Domain, "mode": a.Config.Mode, "providers": catalog.Providers, "cpu": catalog.CPU, "ram": catalog.RAM, "storage": catalog.Storage, "plans": catalog.Plans(), "placesEnabled": a.Config.PlaceSearchEnabled && a.Config.GeoNames != "", "geoipEnabled": a.geo != nil, "countriesEnabled": a.Config.CountryCityEnabled, "geoipAttribution": a.geoipAttribution()})
+	writeJSON(w, map[string]any{"version": buildinfo.Version, "format": codec.Version, "brandName": a.Config.BrandName, "prefix": a.Config.Prefix, "domain": a.Config.Domain, "mode": a.Config.Mode, "providers": catalog.Providers, "cpu": catalog.CPU, "ram": catalog.RAM, "storage": catalog.Storage, "plans": catalog.Plans(), "catalog": catalog.Info(), "placesEnabled": a.Config.PlaceSearchEnabled && a.Config.GeoNames != "", "geoipEnabled": a.geo != nil, "countriesEnabled": a.Config.CountryCityEnabled, "geoipAttribution": a.geoipAttribution()})
 }
 func (a *App) geoipAttribution() string {
 	if a.geo == nil {

@@ -1,3 +1,4 @@
+import {pick} from './browser-select.mjs';
 import {chromium} from 'playwright';
 import {createServer} from 'node:http';
 import {readFile,mkdir} from 'node:fs/promises';
@@ -42,7 +43,7 @@ try{
  for(const row of fixtures){
   await importNode(row.descriptor);
   for(const mode of ['compact','padded']){
-   await page.locator('#mode').selectOption(mode);await generate(row[mode].hostname);
+   await pick(page,'mode',mode);await generate(row[mode].hostname);
    assert.equal(await page.locator('#hostname').textContent(),row[mode].hostname);
   }
  }
@@ -51,10 +52,10 @@ try{
  const custom={nodeId:original,geo:5128581,provider:1,architecture:0,nodeType:1,cpu:3,ram:8,storage:2,ipv4:'192.0.2.42',ipv6:'2001:db8::42'};
  await importNode(custom);
  await page.locator('#prefix').fill('z');await page.locator('#domain').fill('nodes.example.org');
- await page.locator('#mode').selectOption('compact');await generate();
+ await pick(page,'mode','compact');await generate();
  const compact=await page.locator('#hostname').textContent();
  assert.match(compact,/^z0[a-z0-9]+\.nodes\.example\.org$/);
- await page.locator('#mode').selectOption('padded');await generate();
+ await pick(page,'mode','padded');await generate();
  const hostname=await page.locator('#hostname').textContent();
  assert.equal(hostname.split('.')[0].length,63);
  await page.locator('#copy').click();await page.waitForFunction(()=>document.querySelector('#copy').textContent==='Copied');
@@ -81,14 +82,14 @@ try{
  assert.equal(await page.locator('#geo-tab-place').isVisible(),false);
  assert.equal(await page.locator('#geo-tab-ip').isVisible(),false);
  await page.locator('#geo-tools > summary').click();
- await page.locator('#language').selectOption('zh-TW');assert.equal(await page.locator('html').getAttribute('lang'),'zh-TW');
+ await pick(page,'language','zh-TW');assert.equal(await page.locator('html').getAttribute('lang'),'zh-TW');
  assert.equal(await page.locator('#node-id').inputValue(),original);
  assert.equal(await page.locator('#domain').inputValue(),'nodes.example.org');
- await page.locator('#theme').selectOption('dark');assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
- await page.locator('#theme').selectOption('system');await page.emulateMedia({colorScheme:'light'});
+ await pick(page,'theme','dark');assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
+ await pick(page,'theme','system');await page.emulateMedia({colorScheme:'light'});
  await page.waitForFunction(()=>document.documentElement.dataset.theme==='light');
- await page.locator('#language').selectOption('en');
- await page.locator('#mode').selectOption('compact');await generate();
+ await pick(page,'language','en');
+ await pick(page,'mode','compact');await generate();
  await mkdir('test-results',{recursive:true});await page.screenshot({path:'test-results/demo-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
