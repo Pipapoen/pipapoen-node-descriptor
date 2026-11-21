@@ -12,9 +12,13 @@ The application owns its cookie/session glue, so library use does not remove res
 
 ## Observed dependency check
 
-`govulncheck` v1.10.0 reported `No vulnerabilities found` for the current source tree on Windows and for the Linux amd64 target on 2026-11-21. The source tree used go-oidc v3.21.0, oauth2 v0.38.0, and go-jose/v4 v4.1.4. The tool was run in project-local tooling/cache directories. No dependency versions were changed as a consequence of the clean scan.
+`govulncheck` v1.10.0 reported `No vulnerabilities found` for the initial MVP source tree on Windows and for the Linux amd64 target on 2026-11-21. The initial MVP scan used go-oidc v3.21.0, oauth2 v0.38.0, and go-jose/v4 v4.1.4. The tool was run in project-local tooling/cache directories. No dependency versions were changed as a consequence of the clean scan.
 
 This result concerns the known vulnerability database and the code paths analyzed at that time. It does not establish absence of unknown vulnerabilities, correct production proxy settings, or a completed application security review. A vulnerability in another OIDC product needs a matching component, version, and reachable behavior before it can be treated as a PND finding.
+
+## Candidate 26.1.0-rc.3
+
+The candidate updates go-jose/v4 to v4.1.9 and builds with Go 1.27.4. Local Go tests, simulated OIDC login and rejection cases, and vulnerability checks passed. The updated JWK parser accepts RSA moduli up to 4096 bits by default; configure the identity provider with a signing key within that limit.
 
 ## Maintenance options
 
