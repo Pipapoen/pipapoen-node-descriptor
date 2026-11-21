@@ -7,8 +7,8 @@ spec = importlib.util.spec_from_file_location('release_checks', Path(__file__).w
 checks = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(checks)
 checks.check()
-output = checks.ROOT / 'deploy-bundle/source.tar.gz'
-output.parent.mkdir(exist_ok=True)
+output = checks.ROOT / 'build/deploy-bundle/source.tar.gz'
+output.parent.mkdir(parents=True,exist_ok=True)
 with tarfile.open(output, 'w:gz') as archive:
     for path in sorted(checks.source_files()):
         archive.add(path, arcname=path.relative_to(checks.ROOT), recursive=False)

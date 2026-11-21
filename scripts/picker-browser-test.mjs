@@ -35,12 +35,12 @@ try{
  await pick(page,'language','zh-TW');
  assert.equal(await page.locator('#architecture').inputValue(),'3');assert.equal(await page.locator('#nodeType').inputValue(),'7');assert.equal(await page.locator('#ram').inputValue(),'0');
  await page.locator('#architecture-trigger').click();
- await mkdir('test-results',{recursive:true});await page.screenshot({path:'test-results/unified-picker-desktop.png',fullPage:true,animations:'disabled'});
+ await mkdir('build/test-results',{recursive:true});await page.screenshot({path:'build/test-results/unified-picker-desktop.png',fullPage:true,animations:'disabled'});
  await page.locator('#architecture-filter').press('Escape');
  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>scrollTo(0,0));await page.locator('#theme-trigger').click();
  const popup=await page.locator('#theme-popup').boundingBox();assert.ok(popup.x>=0&&popup.x+popup.width<=390);
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
- await page.screenshot({path:'test-results/unified-picker-mobile.png',fullPage:true,animations:'disabled'});
+ await page.screenshot({path:'build/test-results/unified-picker-mobile.png',fullPage:true,animations:'disabled'});
  await page.locator('#theme-filter').press('Escape');
  assert.deepEqual(errors,[]);
  console.log('Unified selectors passed: shared surfaces, special groups, search, keyboard selection, Escape, disabled states, locale retention and mobile popup bounds.');
