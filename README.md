@@ -7,10 +7,13 @@
 ![Backend: Go](https://img.shields.io/badge/backend-Go-007D9C?style=flat-square)
 ![Frontend: Vite and TypeScript](https://img.shields.io/badge/frontend-Vite%20%2B%20TypeScript-3178C6?style=flat-square)
 ![Deployment: Docker Compose](https://img.shields.io/badge/deployment-Docker%20Compose-2496ED?style=flat-square)
+[![CI](https://github.com/Pipapoen/pipapoen-node-descriptor/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/Pipapoen/pipapoen-node-descriptor/actions/workflows/ci.yml)
 
 PND turns selected node information into a consistent hostname and lets you recover that information later. Choose the details to include, preview the available space, and copy the generated name.
 
 The web interface includes English and Traditional Chinese, light/dark/system themes, location helpers, and data import/export.
+
+[Try the interactive examples](https://pipapoen.github.io/pipapoen-node-descriptor/).
 
 ## Deploy with Docker Compose
 
@@ -26,7 +29,7 @@ docker compose up -d
 
 Open `http://localhost:8080` or your configured address. PND generates its encryption key on first startup and preserves it in a Docker volume. Keep a backup of that volume to decode existing names.
 
-The default service is public to anyone who can reach it. See [Deployment and configuration](docs/DEPLOYMENT.md) for SSO, location services, updates, and source builds. Release artifacts are being prepared for the first publication.
+The default service is public to anyone who can reach it. See [Deployment and configuration](docs/DEPLOYMENT.md) for SSO, location services, updates, and source builds.
 
 ## Create a hostname
 
