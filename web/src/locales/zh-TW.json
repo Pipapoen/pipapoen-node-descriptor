@@ -123,5 +123,8 @@
   "locationNameUnavailable": "查無名稱，已保留 ID",
   "feature_disabled": "此部署已關閉這項輔助查詢。",
   "confirmGeoMatch": "請確認對應的 GeoNames 地點：",
-  "noGeoMatch": "本地快照沒有符合的 GeoNames ID，可使用國家／城市工具或直接輸入 ID。"
+  "noGeoMatch": "本地快照沒有符合的 GeoNames ID，可使用國家／城市工具或直接輸入 ID。",
+  "demoLabel": "瀏覽器試用－公開金鑰",
+  "demoHelp": "編碼與解碼在瀏覽器中執行，使用 PND 編碼器與公開示範金鑰（32 個零值位元組）。產生的名稱可用相同金鑰解碼。部署並設定後可使用線上地名與 IP 查詢。",
+  "demoLicenses": "試用版授權與公開金鑰"
 }

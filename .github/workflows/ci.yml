@@ -53,7 +53,7 @@ jobs:
       - if: runner.os == 'Linux'
         run: |
           go run ./scripts/demo-fixtures
-          git diff --exit-code -- demo/src/examples.json
+          git diff --exit-code -- scripts/testdata/demo.json
           pnpm run build:demo
           pnpm exec playwright install --with-deps chromium
           node scripts/browser-ci.mjs

@@ -18,6 +18,8 @@ def source_files():
     for folder in folders:
         for path in (ROOT / folder).rglob('*'):
             relative = path.relative_to(ROOT)
+            if relative.parts[:3] == ('demo', 'public', 'runtime'):
+                continue
             if path.is_file() and 'assets' not in relative.parts and '__pycache__' not in relative.parts:
                 if relative.as_posix() == 'deploy/.env':
                     continue

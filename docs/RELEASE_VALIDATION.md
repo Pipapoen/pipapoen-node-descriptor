@@ -21,3 +21,7 @@ The public repository uses Git Flow with `develop`, `main` and `release/26.1.0`.
 The tag-triggered release workflow records the candidate's exact source commit and image digest. Verify anonymous image pulls and installation from the actual published deployment archive before promoting the candidate to stable.
 
 The LAN MVP continues to use its existing deployment and key. Live GeoNames and DB-IP checks are recorded in MVP_VALIDATION.md. Real Authentik integration remains unconfigured; automated OIDC tests use a simulated provider.
+
+## Shared browser experience
+
+The revised Pages build uses the production frontend, styles and translations, with a WebAssembly build of the same Go codec and complete bundled geographic snapshot. The public key is 32 zero bytes. Dynamic external lookups are disabled. Native API-parity tests and browser ciphertext-vector checks verify consistent encoding/decoding; browser checks also cover custom fields and domains, imports/exports, clipboard reset, geographic filtering, language/theme switching, mobile layout and absence of API network traffic.

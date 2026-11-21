@@ -2,11 +2,12 @@ import '../../node_modules/basecoat-css/dist/basecoat-vega.cdn.css';
 import './style.css';
 import en from './locales/en.json';
 import zh from './locales/zh-TW.json';
+import {request} from '@pnd/transport';
 
 type Locale = typeof en;
 type Descriptor = {nodeId:string; geo?:number; provider?:number; architecture?:number; nodeType?:number; cpu?:number; ram?:number; storage?:number; ipv4?:string; ipv6?:string};
 type Plan={provider:number;name:string;label:string;cpu:number;ram:number;storage:number};
-type Meta={brandName:string;prefix:string;domain:string;mode:string;cpu:string[];ram:string[];storage:string[];providers:{id:number;name:string}[];plans:Plan[];placesEnabled:boolean;geoipEnabled:boolean;countriesEnabled:boolean;geoipAttribution:string};
+type Meta={demo?:boolean;brandName:string;prefix:string;domain:string;mode:string;cpu:string[];ram:string[];storage:string[];providers:{id:number;name:string}[];plans:Plan[];placesEnabled:boolean;geoipEnabled:boolean;countriesEnabled:boolean;geoipAttribution:string};
 type Preview={bits:number;capacityBits:number;compactLength:number;labelLength:number;mode:string};
 const locales:Record<string,Locale>={'en':en,'zh-TW':zh};
 let lang=localStorage.getItem('pnd.language') || (navigator.language.toLowerCase().startsWith('zh')?'zh-TW':'en');
@@ -27,7 +28,7 @@ const escape=(s:string)=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const text=(s:string)=>escape(t(s));
 function applyTheme(){const resolved=theme==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):theme;document.documentElement.dataset.theme=resolved;document.documentElement.classList.toggle('dark',resolved==='dark')}
 applyTheme();matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyTheme);
-async function api<T>(path:string,data?:unknown):Promise<T>{const response=await fetch(path,{method:data===undefined?'GET':'POST',headers:data===undefined?{}:{'Content-Type':'application/json'},body:data===undefined?undefined:JSON.stringify(data)});const result=await response.json();if(!response.ok)throw new Error(t(result.error||'error'));return result}
+async function api<T>(path:string,data?:unknown):Promise<T>{const {ok,result}=await request(path,data);if(!ok)throw new Error(t(result.error||'error'));return result}
 function help(key:string){return `<details class="help"><summary aria-label="${text('help')}">?</summary><p>${text(key)}</p></details>`}
 function field(key:string,input:string){return `<div class="field"><label class="label" for="${key}">${text(key)}</label>${input}</div>`}
 function select(key:string,options:{value:number;label:string}[]){return `<select class="select" id="${key}" aria-label="${text(key)}"><option value="">${text('none')}</option>${options.map(o=>`<option value="${o.value}">${escape(o.label)}</option>`).join('')}</select>`}
@@ -64,7 +65,7 @@ function mount(){
    <div class="toolbar"><select class="select" id="language" aria-label="${text('language')}"><option value="en">English</option><option value="zh-TW">${escape(zh.localeName)}</option></select><select class="select" id="theme" aria-label="${text('theme')}">${['light','dark','system'].map(k=>`<option value="${k}">${text(k)}</option>`).join('')}</select>${session.required?`<button id="logout" data-variant="outline" class="btn btn-outline btn-sm">${text('logout')}</button>`:''}</div>
   </header>
   <main>
-   <div class="page-heading"><h1>${text(tab==='encode'?'builder':'decode')}</h1><span class="text-secondary version-label">${text('experiment')}</span></div>
+   <div class="page-heading"><h1>${text(tab==='encode'?'builder':'decode')}</h1><span class="text-secondary version-label">${text(meta.demo?'demoLabel':'experiment')}${meta.demo?help('demoHelp'):''}</span></div>
    <p id="notice" class="alert alert-warning" role="alert" hidden></p>
    <div id="encode-panel" class="workspace">
     <form id="encode-form" class="card editor-card">
@@ -99,6 +100,7 @@ function mount(){
     </aside>
    </div>
    <section id="decode-panel" class="card decode-panel" hidden><div class="card-header"><h2 class="card-title">${text('decodeInput')}</h2></div><div class="card-body"><form id="decode-form"><textarea class="input mono" id="decode-input" required maxlength="2048" placeholder="${text('decodePlaceholder')}" spellcheck="false"></textarea><button class="btn" type="submit">${text('decodeButton')}</button></form><div id="decoded" hidden><div class="section-heading"><h2 class="card-title">${text('decoded')}</h2><button id="edit-decoded" data-variant="outline" class="btn btn-outline btn-sm">${text('edit')}</button></div><dl id="decoded-values"></dl><p class="text-secondary">${text('decodeNote')}</p><button id="export-decoded" data-variant="outline" class="btn btn-outline btn-sm">${text('export')}</button></div></div></section>
+   ${meta.demo?`<p class="geo-attribution"><a href="./runtime/NOTICE.txt">${text('demoLicenses')}</a></p>`:''}
   </main>
  </div>`;
  $<HTMLSelectElement>('#language').value=lang;$<HTMLSelectElement>('#theme').value=theme;$<HTMLSelectElement>('#mode').value=meta.mode;
