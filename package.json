@@ -1,7 +1,7 @@
 {
   "name": "pipapoen-node-descriptor",
   "private": true,
-  "version": "26.1.0-rc.5",
+  "version": "26.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite --config web/vite.config.ts --host 127.0.0.1",
