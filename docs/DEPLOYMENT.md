@@ -8,7 +8,7 @@ The release archive `pnd-<version>-compose.zip` contains `compose.yaml`, `.env.e
 
 A one-shot `init-key` service creates a 32-byte encryption key in the `keys` named volume and exits. It validates and preserves an existing key. The PND container mounts the volume read-only. The default project name is `pnd`, producing volume `pnd_keys`; custom project names change the volume name. Preserve the project name and back up the key volume. An invalid existing key stops initialization for operator inspection. Deleting the volume changes the identity of a subsequent deployment and prevents correct recovery of existing names.
 
-Change `PND_IMAGE` in `.env` to the desired version, then run `docker compose pull` and `docker compose up -d`. Include the same optional overlay files when updating an instance that uses them. The packaged overlays share the configured image version. For packaged commands below, `.env` replaces the source checkout's `--env-file deployment.env` argument.
+Change `PND_IMAGE` in `.env` to the desired version, then run `docker compose pull` and `docker compose up -d`. Include the same optional overlay files when updating an instance that uses them. The packaged overlays share the configured image version. For packaged commands below, `.env` replaces the source checkout's `--env-file deployment.env` argument, and overlay filenames omit the `deploy/overlays/` prefix.
 
 Existing file-key deployments can continue using the source Compose configuration. Migrating to the release bundle requires preserving the original key and optional database volume; a fresh release volume creates a separate installation.
 
@@ -20,9 +20,9 @@ Build the application with Docker Compose v2 or newer:
 docker compose build
 mkdir -p secrets
 chmod 700 secrets
-docker run --rm --user "$(id -u):$(id -g)" -v "$PWD/secrets:/secrets" pnd:26.1.0-rc.2 -generate-key /secrets/pnd-key
+docker run --rm --user "$(id -u):$(id -g)" -v "$PWD/secrets:/secrets" pnd:26.1.0-rc.3 -generate-key /secrets/pnd-key
 chmod 644 secrets/pnd-key
-cp deployment.env.example deployment.env
+cp deploy/source.env.example deployment.env
 docker compose --env-file deployment.env up -d
 ```
 
@@ -33,8 +33,8 @@ On Windows, create `secrets` in PowerShell and run the image with an absolute bi
 ```powershell
 docker compose build
 New-Item -ItemType Directory -Force secrets
-docker run --rm --mount "type=bind,source=$((Resolve-Path secrets).Path),target=/secrets" pnd:26.1.0-rc.2 -generate-key /secrets/pnd-key
-Copy-Item deployment.env.example deployment.env
+docker run --rm --mount "type=bind,source=$((Resolve-Path secrets).Path),target=/secrets" pnd:26.1.0-rc.3 -generate-key /secrets/pnd-key
+Copy-Item deploy/source.env.example deployment.env
 docker compose --env-file deployment.env up -d
 ```
 
@@ -66,7 +66,7 @@ Replace the key file and restart or recreate the service to change keys. Existin
 Create an OIDC client with callback `<PND_PUBLIC_URL>/auth/callback`. Configure `PND_OIDC_ISSUER` and `PND_OIDC_CLIENT_ID` in `deployment.env`, and place the client secret in `secrets/oidc-client-secret` with container-readable permissions.
 
 ```sh
-docker compose --env-file deployment.env -f compose.yaml -f compose.oidc.yaml up -d
+docker compose --env-file deployment.env -f compose.yaml -f deploy/overlays/compose.oidc.yaml up -d
 ```
 
 OIDC discovery, Authorization Code with PKCE, state, nonce, ID-token verification, and signed HttpOnly session cookies are supported. Public HTTPS origins produce Secure cookies. Session identity is not written to a user database. Logout clears the PND session; the identity provider's session is managed by that provider.
@@ -105,7 +105,7 @@ The embedded snapshot is static and currently dated 2026-11-20. The running serv
 Localization uses `uv run --script scripts/localize-geography.py --phase pilot`, followed by `--phase full` after the pilot passes. The script pins its build-only OpenCC dependency and filters the large upstream alias archive down to the embedded geographic records. A release-time or monthly reviewed snapshot refresh is the recommended future workflow; it is not currently scheduled. A failed refresh should leave the last verified snapshot in service.
 
 - Set `PND_GEONAMES_USERNAME` to enable GeoNames place search and ID lookup through its HTTPS API. Direct numeric ID entry is available without a configured account. Search results show administrative context and feature codes.
-- Obtain an appropriately licensed GeoIP2/GeoLite2 City database and place it at `data/GeoLite2-City.mmdb`. Start Compose with `-f compose.yaml -f compose.geoip.yaml` to mount it read-only. Restart after updating the database. Public IPv4 and IPv6 suggestions are displayed separately and applied only by user selection.
+- Obtain an appropriately licensed GeoIP2/GeoLite2 City database and place it at `data/GeoLite2-City.mmdb`. Start Compose with `-f compose.yaml -f deploy/overlays/compose.geoip.yaml` to mount it read-only. Restart after updating the database. Public IPv4 and IPv6 suggestions are displayed separately and applied only by user selection.
 - Optional lookups fail visibly when data is unavailable; selected form values remain intact. GeoNames and MaxMind require their applicable attribution and data-use terms.
 
 Country/city selection, online place search, and IP lookup are grouped beneath GeoNames ID. The IP helper accepts a separate address or the currently selected network addresses. Running a lookup does not add a network field to the descriptor.
@@ -115,7 +115,7 @@ Country/city selection, online place search, and IP lookup are grouped beneath G
 Use the optional one-shot DB-IP Lite City updater to initialize a named data volume:
 
 ```sh
-docker compose --env-file deployment.env -f compose.yaml -f compose.geoip-auto.yaml up -d --build
+docker compose --env-file deployment.env -f compose.yaml -f deploy/overlays/compose.geoip-auto.yaml up -d --build
 ```
 
 Compose builds the application image, runs `geoip-update`, and starts PND after successful initialization. The updater exits after completion; it is not a resident service. This option requires no account. The IP helper displays DB-IP attribution, and the separate data volume retains the downloaded database and a release/hash sidecar. It is an alternative to the manually mounted `compose.geoip.yaml` configuration; select one GeoIP overlay.
@@ -125,8 +125,8 @@ The updater discovers the published monthly MMDB link on the official HTTPS sour
 Refresh explicitly and restart PND to load the new mapped file:
 
 ```sh
-docker compose --env-file deployment.env -f compose.yaml -f compose.geoip-auto.yaml run --rm geoip-update
-docker compose --env-file deployment.env -f compose.yaml -f compose.geoip-auto.yaml restart pnd
+docker compose --env-file deployment.env -f compose.yaml -f deploy/overlays/compose.geoip-auto.yaml run --rm geoip-update
+docker compose --env-file deployment.env -f compose.yaml -f deploy/overlays/compose.geoip-auto.yaml restart pnd
 ```
 
 There is no background schedule. A deployment can invoke this update command during its normal monthly maintenance. The application mounts the data volume read-only; only the one-shot updater writes it. For native Windows updates, stop readers before replacement. If an updater is forcibly killed, inspect its state before removing a stale `.lock` file.

@@ -29,6 +29,12 @@ Open `http://localhost:8080` or your configured address. PND generates its encry
 
 The default service is public to anyone who can reach it. See [Deployment and configuration](docs/DEPLOYMENT.md) for SSO, location services, updates, and source builds.
 
+### Recommended resources
+
+For a small deployment using the published image, use a host with at least 1 vCPU and reserve 128 MiB of RAM for PND. Allow an additional 512 MiB of RAM for the optional GeoIP updater while running.
+
+Allow additional resources for the host OS and Docker, including the Docker Desktop VM on Windows. Reserve disk space for container images and optional GeoIP data. Increase resources as traffic grows; container limits are documented in [Deployment and configuration](docs/DEPLOYMENT.md).
+
 ## Create a hostname
 
 1. Keep the generated Node ID, or **Import data** for an existing node.
@@ -58,7 +64,7 @@ Screenshots use example data. Keep exported node files when upgrading the MVP.
 
 - [Deployment and configuration](docs/DEPLOYMENT.md)
 - [Technical specification](docs/TECHNICAL.md)
-- [Contributing](CONTRIBUTING.md)
+- [Contributing](.github/CONTRIBUTING.md)
 - [Release operations](docs/RELEASING.md)
 - [Translation contributions](docs/TRANSLATING.md)
 - [Third-party notices](THIRD_PARTY_NOTICES.md)

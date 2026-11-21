@@ -1,13 +1,12 @@
 FROM node:24-bookworm-slim AS frontend
 WORKDIR /src
-RUN corepack enable && corepack prepare pnpm@11.25.0 --activate
+RUN corepack enable && corepack prepare pnpm@11.28.13 --activate
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
-COPY tsconfig.json vite.config.ts postcss.config.mjs ./
 COPY web ./web
 RUN pnpm run build
 
-FROM golang:1.26.11-bookworm AS backend
+FROM golang:1.27.4-bookworm AS backend
 WORKDIR /src
 COPY go.mod go.sum ./
 RUN go mod download

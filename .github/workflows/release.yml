@@ -22,7 +22,7 @@ jobs:
       contents: write
       packages: write
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -41,11 +41,11 @@ jobs:
           subprocess.run(['git','merge-base','--is-ancestor','HEAD','origin/'+branch],check=True)
           with open(os.environ['GITHUB_OUTPUT'],'a') as output:
               output.write('version='+version+'\nprerelease='+str(prerelease).lower()+'\n')
-      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+      - uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
         with:
           go-version-file: go.mod
-      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
-      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '24'
           cache: pnpm
@@ -54,15 +54,15 @@ jobs:
           pnpm run build
           python scripts/check-release.py
           python scripts/package-release.py
-      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
-      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish versioned image
         id: image
-        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           context: .
           push: true
@@ -82,10 +82,10 @@ jobs:
           PRERELEASE: ${{ steps.release.outputs.prerelease }}
           IMAGE_DIGEST: ${{ steps.image.outputs.digest }}
         run: |
-          printf '%s\n' "ghcr.io/pipapoen/pipapoen-node-descriptor@$IMAGE_DIGEST" > dist/release/IMAGE_DIGEST
+          printf '%s\n' "ghcr.io/pipapoen/pipapoen-node-descriptor@$IMAGE_DIGEST" > build/release/IMAGE_DIGEST
           flags=()
           if [ "$PRERELEASE" = true ]; then flags+=(--prerelease); fi
-          gh release create "$TAG" --verify-tag --draft --latest=false --generate-notes "${flags[@]}" dist/release/*
+          gh release create "$TAG" --verify-tag --draft --latest=false --generate-notes "${flags[@]}" build/release/*
           gh release edit "$TAG" --draft=false --latest=false
       - name: Promote stable image aliases
         if: steps.release.outputs.prerelease == 'false'
