@@ -29,6 +29,12 @@ Open `http://localhost:8080` or your configured address. PND generates its encry
 
 The default service is public to anyone who can reach it. See [Deployment and configuration](docs/DEPLOYMENT.md) for SSO, location services, updates, and source builds.
 
+### Recommended resources
+
+For a small deployment using the published image, use a host with at least 1 vCPU and reserve 128 MiB of RAM for PND. The optional GeoIP updater needs an additional 384 MiB of RAM while running.
+
+Allow additional resources for the host OS and Docker, including the Docker Desktop VM on Windows. Reserve disk space for container images and optional GeoIP data. Increase resources as traffic grows; container limits are documented in [Deployment and configuration](docs/DEPLOYMENT.md).
+
 ## Create a hostname
 
 1. Keep the generated Node ID, or **Import data** for an existing node.
