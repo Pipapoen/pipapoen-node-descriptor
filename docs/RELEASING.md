@@ -52,10 +52,10 @@ Build with `pnpm run build:demo` and test with `pnpm run test:demo`. The build c
 
 ## Release evidence
 
-Record the reviewed source commit, CI run, package checksums, container digest, platform coverage, dependency scan date, and deployment test outcome. Live Authentik verification remains an operator integration check until a real client is available. GeoNames and DB-IP live integration were verified in the MVP environment; CI uses local fixtures and optional-service checks to avoid account and upstream availability dependencies.
+Record the reviewed source commit, CI run, package checksums, container digest, platform coverage, dependency scan date, and deployment test outcome. A live Authentik 2026.8.6 trial verified login, logout/relogin and absolute session expiry. GeoNames and DB-IP live integration were verified in the MVP environment; CI uses local fixtures and optional-service checks to avoid account and upstream availability dependencies.
 
 ## First stable release gate
 
-Candidate `26.1.0-rc.5` uses the frozen format-1 layout and the same feature set intended for `26.1.0`. Promotion changes product version references and release status. Functional changes require another candidate. Verify native/WASM vectors, Windows/Linux CI, race and fuzz checks, runtime licenses, secret/vulnerability scans, source and packaged-container starts, anonymous assets, an rc.3-to-candidate upgrade with format-0 decoding, and candidate restart with format-1 decoding. OIDC was tested with a live Authentik 2026.8.6 instance, including login, logout and absolute expiry; temporary credentials and providers were removed.
+Stable release `26.1.0` promotes accepted candidate `26.1.0-rc.5` with the same frozen format-1 layout and feature set. Promotion changes product version references and release status. Functional changes require another candidate. Verify native/WASM vectors, Windows/Linux CI, race and fuzz checks, runtime licenses, secret/vulnerability scans, source and packaged-container starts, anonymous assets, an rc.3-to-candidate upgrade with format-0 decoding, and candidate restart with format-1 decoding. OIDC was tested with a live Authentik 2026.8.6 instance, including login, logout and absolute expiry; temporary credentials and providers were removed.
 
 Stable publication uses the existing tag workflow after final maintainer acceptance. Recheck the resulting versioned image, stable aliases and artifact checksums. Candidate releases leave stable aliases unchanged. Released candidate artifacts stay immutable.
