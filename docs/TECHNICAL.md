@@ -1,6 +1,6 @@
 # PND Technical Specification
 
-Status: release candidate `26.1.0-rc.2`, descriptor format `0` under compatibility review for the first stable release.
+Status: release candidate `26.1.0-rc.3`, descriptor format `0` under compatibility review for the first stable release.
 
 ## Architecture
 
