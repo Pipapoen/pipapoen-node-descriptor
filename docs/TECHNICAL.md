@@ -1,6 +1,6 @@
 # PND Technical Specification
 
-Status: release candidate `26.1.0-rc.5`, descriptor format `1` frozen for the first stable release, with format-0 decoding compatibility.
+Status: stable release `26.1.0`, descriptor format `1` frozen for the first stable release, with format-0 decoding compatibility.
 
 ## Architecture
 

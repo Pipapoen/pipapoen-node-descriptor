@@ -20,7 +20,7 @@ Build the application with Docker Compose v2 or newer:
 docker compose build
 mkdir -p secrets
 chmod 700 secrets
-docker run --rm --user "$(id -u):$(id -g)" -v "$PWD/secrets:/secrets" pnd:26.1.0-rc.5 -generate-key /secrets/pnd-key
+docker run --rm --user "$(id -u):$(id -g)" -v "$PWD/secrets:/secrets" pnd:26.1.0 -generate-key /secrets/pnd-key
 chmod 644 secrets/pnd-key
 cp deploy/source.env.example deployment.env
 docker compose --env-file deployment.env up -d
@@ -33,7 +33,7 @@ On Windows, create `secrets` in PowerShell and run the image with an absolute bi
 ```powershell
 docker compose build
 New-Item -ItemType Directory -Force secrets
-docker run --rm --mount "type=bind,source=$((Resolve-Path secrets).Path),target=/secrets" pnd:26.1.0-rc.5 -generate-key /secrets/pnd-key
+docker run --rm --mount "type=bind,source=$((Resolve-Path secrets).Path),target=/secrets" pnd:26.1.0 -generate-key /secrets/pnd-key
 Copy-Item deploy/source.env.example deployment.env
 docker compose --env-file deployment.env up -d
 ```
