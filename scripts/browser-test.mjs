@@ -8,7 +8,7 @@ const page=await browser.newPage({viewport:{width:1360,height:1000},locale:'en-U
 async function chooseProvider(value){await pick(page,'provider',value)}
 async function openPicker(kind){const other=kind==='country'?'city':'country';if(await page.locator('#'+other+'-picker').evaluate(el=>el.open))await page.locator('#'+other+'-filter').press('Escape');if(!await page.locator('#'+kind+'-picker').evaluate(el=>el.open))await page.locator('#'+kind+'-trigger').click()}
 async function filterPicker(kind,value){await openPicker(kind);if(kind==='city'){const response=page.waitForResponse(r=>r.url().includes('/api/cities?')&&new URL(r.url()).searchParams.get('q')===value);await page.locator('#'+kind+'-filter').fill(value);await response}else await page.locator('#'+kind+'-filter').fill(value)}
-async function choosePicker(kind,value){await openPicker(kind);await page.locator('#'+kind).selectOption(value);await page.locator('#'+kind).press('Enter')}
+async function choosePicker(kind,value){await openPicker(kind);await page.locator('#'+kind).selectOption(value);if(await page.locator('#'+kind+'-picker').evaluate(el=>el.open))await page.locator('#'+kind).press('Enter')}
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 try {
  await page.goto(base);
