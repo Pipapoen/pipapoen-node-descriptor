@@ -1,6 +1,6 @@
 # PND Technical Specification
 
-Status: release candidate `26.1.0-rc.1`, descriptor format `0` under compatibility review for the first stable release.
+Status: release candidate `26.1.0-rc.2`, descriptor format `0` under compatibility review for the first stable release.
 
 ## Architecture
 
@@ -65,7 +65,7 @@ Preview/encode receive `descriptor` plus optional `prefix`, `domain`, and `mode`
 
 English and Traditional Chinese are included, with light/dark/system themes. The interface uses selected MIT-licensed Basecoat components, with unused CSS removed during the build. A compact top navigation replaces the original sidebar. `PND_BRAND_NAME` customizes the secondary brand label independently of the domain. Browser language/theme choices persist independently. Node ID is read-only in the form; generation, JSON import, and decoded-node reuse supply its value. Optional fields use an empty value to represent absence, including empty dropdown options. Numeric code zero remains a selected value. Provider-aware recommendations reorder dropdown groups while preserving values. Applying a suggestion explicitly changes CPU/RAM/storage. The README provides illustrated user instructions; contextual help remains beside relevant controls.
 
-Each descriptor contains at most one Provider ID. Its 16-bit domain contains 65,536 codes; `0` denotes self-managed and `65535` denotes other, leaving 65,534 potential provider codes. The initial menu includes DigitalOcean, Akamai Cloud/Linode, Vultr, and AWS alongside those two categories. UI read-only handling prevents accidental ID edits; imported IDs are validated as 80-bit values rather than attested as service-generated identities.
+Each descriptor contains at most one Provider ID. Its 16-bit domain contains 65,536 codes; `0` denotes self-managed and `65535` denotes other, leaving 65,534 potential provider codes. The review registry includes 38 hosting providers alongside those two categories, with searchable names and aliases. UI read-only handling prevents accidental ID edits; imported IDs are validated as 80-bit values rather than attested as service-generated identities.
 
 GeoNames ID entry works without external configuration. A GeoNames account enables search and ID lookup. An operator-supplied GeoIP City database enables separate IPv4/IPv6 suggestions. Users confirm suggested locations. Reference data does not determine node identity.
 
@@ -82,3 +82,7 @@ After decoding, the frontend separately resolves the retained GeoNames ID to loc
 Tests cover field masks, boundaries, independent packing vectors, malformed input, deterministic output, key changes, cookies, OIDC state/nonce/PKCE, and API protection. Browser tests cover generation, padding, decoding, retained values, languages, themes, and narrow layouts. Linux execution is verified on the trial deployment.
 
 GitHub workflows verify the application, publish versioned GHCR images and release archives, and deploy the static experience. The release Compose bundle initializes a persistent key volume on first use. Product versions follow `YY.release.patch`; descriptor versions evolve independently. See [release operations](RELEASING.md), [MVP validation](MVP_VALIDATION.md), [deployment](DEPLOYMENT.md), and [translation contributions](TRANSLATING.md).
+
+## Provider catalog
+
+The review snapshot adds searchable provider names/aliases and product-series recommendations with explicit source units, provenance and optional included storage. See [catalog maintenance and ID allocation](CATALOG.md). The format-0 decoding dictionary remains frozen.

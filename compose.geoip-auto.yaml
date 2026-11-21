@@ -1,6 +1,6 @@
 services:
   geoip-update:
-    image: pnd:26.1.0-rc.1
+    image: pnd:26.1.0-rc.2
     user: "0:0"
     command: ["-update-geoip", "/data/GeoIP-City.mmdb"]
     volumes:

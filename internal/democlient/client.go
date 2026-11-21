@@ -56,7 +56,7 @@ func (c *Client) Request(path, body string) Result {
 		return success(map[string]any{"version": buildinfo.Version, "format": codec.Version, "demo": true,
 			"brandName": "Pipapoen", "prefix": "x", "domain": "example.org", "mode": "compact",
 			"providers": catalog.Providers, "cpu": catalog.CPU, "ram": catalog.RAM, "storage": catalog.Storage,
-			"plans": catalog.Plans(), "placesEnabled": false, "geoipEnabled": false, "countriesEnabled": true, "geoipAttribution": ""})
+			"plans": catalog.Plans(), "catalog": catalog.Info(), "placesEnabled": false, "geoipEnabled": false, "countriesEnabled": true, "geoipAttribution": ""})
 	case "/api/node-id":
 		id, err := codec.NewID()
 		if err != nil {

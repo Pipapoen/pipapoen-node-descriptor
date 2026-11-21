@@ -20,7 +20,7 @@ try{
   await new Promise(resolve=>setTimeout(resolve,100));
  }
  if(!ready)throw Error('Application did not become ready');
- for(const script of ['browser-test.mjs','helper-flags-test.mjs']){
+ for(const script of ['browser-test.mjs','helper-flags-test.mjs','catalog-browser-test.mjs','picker-browser-test.mjs']){
   const child=spawn(process.execPath,['scripts/'+script],{stdio:'inherit',env:{...process.env,PND_TEST_URL:'http://127.0.0.1:8080'}});
   const code=await new Promise(resolve=>child.once('exit',resolve));
   if(code!==0)throw Error(script+' failed');
