@@ -133,7 +133,26 @@ func TestDeterminismAndKeyRotation(t *testing.T) {
 }
 func FuzzDecode(f *testing.F) {
 	e, _ := New(make([]byte, 32), catalog.Dictionary())
+	for _, version := range []string{"0", "1"} {
+		for _, row := range frozenVectors(f, version) {
+			f.Add(row.Compact.Label)
+			f.Add(row.Padded.Label)
+		}
+	}
 	f.Add("n0abcdefghijklmnopq")
 	f.Add("")
-	f.Fuzz(func(t *testing.T, s string) { _, _ = e.Decode(s) })
+	f.Fuzz(func(t *testing.T, s string) {
+		d, err := e.Decode(s)
+		if err != nil {
+			return
+		}
+		out, err := e.Encode(d, "x", "example.org", false)
+		if err != nil {
+			t.Fatal(err)
+		}
+		got, err := e.Decode(out.Label)
+		if err != nil || !Same(got, d) {
+			t.Fatal("accepted input failed canonical round trip", err)
+		}
+	})
 }

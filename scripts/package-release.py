@@ -20,6 +20,11 @@ def notices(folder):
         shutil.copyfile(root / name, folder / name)
     shutil.copytree(root / 'third_party', folder / 'third_party')
     shutil.copytree(root / 'docs', folder / 'docs')
+    for name in ('internal/catalog/dictionary.json', 'internal/codec/testdata/packing.json',
+                 'internal/codec/testdata/format0.json', 'internal/codec/testdata/format1.json'):
+        target = folder / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(root / name, target)
 
 
 archives = []

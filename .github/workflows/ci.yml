@@ -45,6 +45,11 @@ jobs:
       - run: go test ./...
       - if: runner.os == 'Linux'
         run: go test -race ./...
+      - if: runner.os == 'Linux'
+        name: Format fuzz regression
+        run: |
+          go test ./internal/codec -run=^$ -fuzz=^FuzzDecode$ -fuzztime=30s -parallel=2
+          go test ./internal/codec -run=^$ -fuzz=^FuzzRoundTrip$ -fuzztime=30s -parallel=2
       - name: Build native application
         shell: bash
         run: |

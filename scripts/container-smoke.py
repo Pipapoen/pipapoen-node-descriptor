@@ -40,8 +40,10 @@ try:
     ready()
     meta = api('/api/meta')
     assert meta['prefix'] == 'x' and meta['domain'] == 'example.org'
+    assert meta['format'] == '1'
     descriptor = {'nodeId': api('/api/node-id', {})['nodeId'], 'geo': 5128581}
     output = api('/api/encode', {'descriptor': descriptor})
+    assert output['label'][1] == '1'
     assert api('/api/decode', {'input': output['hostname']}) == descriptor
     # Recreate both services to prove initialization preserves the original key.
     run('up', '-d', '--force-recreate', '--wait', '--wait-timeout', '90')

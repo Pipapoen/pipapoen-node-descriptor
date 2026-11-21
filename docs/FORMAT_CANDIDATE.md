@@ -1,6 +1,6 @@
 # Descriptor Format Candidate and Encryption Evaluation
 
-Date: 2026-11-20. Status: evaluated prototype components and proposed semantics. The MVP uses the single-key format described below; production format stability remains under review.
+Date: 2026-11-20. Historical evaluation record. The frozen production wire specification is [Descriptor Format 1](FORMAT_1.md); this document preserves the design work that led to formats 0 and 1.
 
 ## Proposed field semantics
 
