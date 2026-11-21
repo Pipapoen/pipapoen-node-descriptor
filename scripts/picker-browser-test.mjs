@@ -11,6 +11,28 @@ try{
  for(const [id,values] of [['architecture',['3']],['nodeType',['7']],['provider',['0','65535']],['theme',['system']]]){
   assert.deepEqual(await page.locator('#'+id+' optgroup').first().locator('option').evaluateAll(options=>options.map(o=>o.value)),values);
  }
+ // Every selection commits before dependent option lists or the page can rebuild.
+ await page.locator('.recommendations > summary').click();await page.locator('#geo-tools > summary').click();
+ async function commit(id,value){
+  await page.locator('#'+id+'-trigger').click();
+  await page.locator('#'+id).selectOption(value);
+  assert.equal(await page.locator('#'+id+'-picker').evaluate(el=>el.open),false,id+' stayed open');
+  assert.equal(await page.locator('#'+id).inputValue(),value);
+ }
+ await page.locator('#provider-trigger').click();await page.locator('#provider-filter').fill('vultr');
+ await page.locator('#provider option[value="3"]').click();
+ assert.equal(await page.locator('#provider-picker').evaluate(el=>el.open),false,'provider pointer selection stayed open');
+ assert.equal(await page.locator('#provider-trigger').evaluate(el=>document.activeElement===el),true);
+ for(const [id,value] of [['provider','3'],['architecture','0'],['nodeType','1'],['cpu','1'],['ram','4'],['storage','2'],['mode','padded'],['theme','light']])await commit(id,value);
+ const family=await page.locator('#plan-family option').evaluateAll(options=>options.find(o=>o.value)?.value);
+ await commit('plan-family',family);
+ await page.waitForFunction(()=>!document.querySelector('#country-filter').disabled);await commit('country','US');
+ await page.locator('#city-trigger').click();await page.locator('#city-filter').fill('New York');
+ await page.waitForFunction(()=>[...document.querySelector('#city').options].some(o=>o.value==='5128581'));
+ await page.locator('#city').selectOption('5128581');assert.equal(await page.locator('#city-picker').evaluate(el=>el.open),false);
+ await commit('language','zh-TW');await commit('language','en');
+ // Reload resets fields for the remaining keyboard and disabled-state checks.
+ await page.reload();await page.locator('#node-id').waitFor();
  await page.locator('#generate').click();await page.waitForFunction(()=>document.querySelector('#hostname').textContent);
  await page.locator('#architecture-trigger').click();await page.locator('#architecture-filter').fill('arm');
  assert.equal(await page.locator('#architecture').inputValue(),'');assert.equal(await page.locator('#stale').isVisible(),false);

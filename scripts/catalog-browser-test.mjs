@@ -34,7 +34,7 @@ try{
  async function chooseProvider(value,query=''){
   if(!await page.locator('#provider-picker').evaluate(el=>el.open))await page.locator('#provider-trigger').click();
   await page.locator('#provider-filter').fill(query);
-  await page.locator('#provider').selectOption(value);await page.locator('#provider').press('Enter');
+  await page.locator('#provider').selectOption(value);if(await page.locator('#provider-picker').evaluate(el=>el.open))await page.locator('#provider').press('Enter');
  }
  await page.locator('#geo').fill('5128581');await page.locator('#ipv4').fill('192.0.2.42');
  await chooseProvider('5','hetzner');
