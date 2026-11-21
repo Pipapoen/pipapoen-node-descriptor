@@ -1,0 +1,134 @@
+[
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "0123456789abcdef0123"
+      },
+      "label": "x0j0n1ju8dm35yrminj",
+      "hostname": "x0j0n1ju8dm35yrminj.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 19,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "0123456789abcdef0123"
+    },
+    "padded": {
+      "descriptor": {
+        "nodeId": "0123456789abcdef0123"
+      },
+      "label": "x0zw9ujfhog67grd1obgarum51mgyg7hlpy31ucujypbayjyrbb0cjz3lumhdyq",
+      "hostname": "x0zw9ujfhog67grd1obgarum51mgyg7hlpy31ucujypbayjyrbb0cjz3lumhdyq.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "0123456789abcdef0123",
+        "geo": 5128581,
+        "provider": 1,
+        "cpu": 1,
+        "ram": 4,
+        "storage": 2
+      },
+      "label": "x0x9to5izuu6g6l2ybuw59s4jb2zr",
+      "hostname": "x0x9to5izuu6g6l2ybuw59s4jb2zr.example.org",
+      "preview": {
+        "bits": 140,
+        "capacityBits": 315,
+        "compactLength": 29,
+        "labelLength": 29,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "0123456789abcdef0123",
+      "geo": 5128581,
+      "provider": 1,
+      "cpu": 1,
+      "ram": 4,
+      "storage": 2
+    },
+    "padded": {
+      "descriptor": {
+        "nodeId": "0123456789abcdef0123",
+        "geo": 5128581,
+        "provider": 1,
+        "cpu": 1,
+        "ram": 4,
+        "storage": 2
+      },
+      "label": "x03sw2xj7251tb39mhdiazcvg0hlpq0l5afsuygdqoxabfhesak5ptih6h7me8g",
+      "hostname": "x03sw2xj7251tb39mhdiazcvg0hlpq0l5afsuygdqoxabfhesak5ptih6h7me8g.example.org",
+      "preview": {
+        "bits": 140,
+        "capacityBits": 315,
+        "compactLength": 29,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "0123456789abcdef0123",
+        "geo": 5128581,
+        "provider": 0,
+        "cpu": 3,
+        "ram": 8,
+        "storage": 5,
+        "ipv4": "192.0.2.10"
+      },
+      "label": "x0pve0uwsutmkxbrlzmv3w5zg62usvdevupz",
+      "hostname": "x0pve0uwsutmkxbrlzmv3w5zg62usvdevupz.example.org",
+      "preview": {
+        "bits": 176,
+        "capacityBits": 315,
+        "compactLength": 36,
+        "labelLength": 36,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "0123456789abcdef0123",
+      "geo": 5128581,
+      "provider": 0,
+      "cpu": 3,
+      "ram": 8,
+      "storage": 5,
+      "ipv4": "192.0.2.10"
+    },
+    "padded": {
+      "descriptor": {
+        "nodeId": "0123456789abcdef0123",
+        "geo": 5128581,
+        "provider": 0,
+        "cpu": 3,
+        "ram": 8,
+        "storage": 5,
+        "ipv4": "192.0.2.10"
+      },
+      "label": "x0xlt4ubqo2siyngz2m66jf3z1rb9dqiq5gdbjhbxsm5b7jjoncdvk6aj13ghp5",
+      "hostname": "x0xlt4ubqo2siyngz2m66jf3z1rb9dqiq5gdbjhbxsm5b7jjoncdvk6aj13ghp5.example.org",
+      "preview": {
+        "bits": 176,
+        "capacityBits": 315,
+        "compactLength": 36,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  }
+]

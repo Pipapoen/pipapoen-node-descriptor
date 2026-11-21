@@ -1,0 +1,17 @@
+DB-IP Lite City data
+
+IP Geolocation by DB-IP: https://db-ip.com
+Download and coverage: https://db-ip.com/db/download/ip-to-city-lite
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+License terms: https://creativecommons.org/licenses/by/4.0/
+
+The optional updater downloads the original monthly MMDB archive from DB-IP's
+official HTTPS distribution, decompresses it, and records the resulting file
+hash and release month. The application displays DB-IP attribution with the
+IP lookup tool. Database contents are stored separately from the application
+image. PND's MIT source license does not replace the dataset's CC BY terms.
+
+DB-IP city names may be matched against the separately attributed GeoNames
+snapshot to offer user-confirmed candidate identifiers. These candidates are
+PND suggestions and are not GeoNames identifiers supplied by DB-IP. Approximate
+IP locations are not guarantees of a physical server's precise location.

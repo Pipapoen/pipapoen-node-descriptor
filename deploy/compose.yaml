@@ -1,0 +1,51 @@
+name: pnd
+services:
+  init-key:
+    image: ${PND_IMAGE:-ghcr.io/pipapoen/pipapoen-node-descriptor:26.1.0-rc.1}
+    user: "0:0"
+    command: ["-init-key", "/keys/pnd-key"]
+    volumes:
+      - keys:/keys
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 32m
+    pids_limit: 16
+    restart: "no"
+  pnd:
+    image: ${PND_IMAGE:-ghcr.io/pipapoen/pipapoen-node-descriptor:26.1.0-rc.1}
+    depends_on:
+      init-key:
+        condition: service_completed_successfully
+    ports:
+      - "${PND_BIND_ADDRESS:-0.0.0.0}:${PND_PORT:-8080}:8080"
+    environment:
+      PND_KEY_FILE: /keys/pnd-key
+      PND_PUBLIC_URL: ${PND_PUBLIC_URL:-http://localhost:8080}
+      PND_DOMAIN: ${PND_DOMAIN:-example.org}
+      PND_PREFIX: ${PND_PREFIX:-x}
+      PND_BRAND_NAME: ${PND_BRAND_NAME-Pipapoen}
+      PND_LENGTH_MODE: ${PND_LENGTH_MODE:-compact}
+      PND_SESSION_TTL: ${PND_SESSION_TTL:-30m}
+      PND_GEONAMES_USERNAME: ${PND_GEONAMES_USERNAME:-}
+      PND_COUNTRY_CITY_ENABLED: ${PND_COUNTRY_CITY_ENABLED:-true}
+      PND_PLACE_SEARCH_ENABLED: ${PND_PLACE_SEARCH_ENABLED:-true}
+      PND_IP_LOOKUP_ENABLED: ${PND_IP_LOOKUP_ENABLED:-true}
+      GOMEMLIMIT: 96MiB
+    volumes:
+      - keys:/keys:ro
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    cpus: 0.5
+    pids_limit: 64
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, /pnd, -healthcheck]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 5s
+volumes:
+  keys:

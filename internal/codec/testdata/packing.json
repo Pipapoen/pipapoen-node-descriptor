@@ -1,0 +1,128 @@
+[
+  {
+    "descriptor": {
+      "nodeId": "024ccd482aad9c3290af"
+    },
+    "payload": "7aj7d24cvkfhukvxr",
+    "bits": 86
+  },
+  {
+    "descriptor": {
+      "geo": 1668341,
+      "provider": 1,
+      "nodeId": "8f4bc7104191ca3fe234"
+    },
+    "payload": "tpgp4gj3xfc44rdhwrg3wu9",
+    "bits": 119
+  },
+  {
+    "descriptor": {
+      "cpu": 0,
+      "ram": 0,
+      "storage": 0,
+      "nodeId": "2f3dfbe582760931b31d"
+    },
+    "payload": "1jae2s4z9blhpk03hxc",
+    "bits": 94
+  },
+  {
+    "descriptor": {
+      "geo": 1668341,
+      "provider": 1,
+      "architecture": 0,
+      "nodeType": 1,
+      "cpu": 0,
+      "ram": 0,
+      "storage": 0,
+      "ipv4": "226.40.184.181",
+      "ipv6": "ba7:e8c4:bb22:f6bd:317:abfa:d9a5:a439",
+      "nodeId": "880d1768949a67d61ca0"
+    },
+    "payload": "512iql3k38ke47cntt3md1su0jxm5h0t4hrtwoed62tc4dyiknc25au61",
+    "bits": 292
+  },
+  {
+    "descriptor": {
+      "nodeId": "c8694d97e70648e7ad2d"
+    },
+    "payload": "7erjut8d5dztva2b1",
+    "bits": 86
+  },
+  {
+    "descriptor": {
+      "geo": 1668341,
+      "provider": 1,
+      "nodeId": "0bfe52de7621f9ac79ef"
+    },
+    "payload": "tee8ylkzx4i4c0j3s6c3im9",
+    "bits": 119
+  },
+  {
+    "descriptor": {
+      "cpu": 0,
+      "ram": 1,
+      "storage": 0,
+      "nodeId": "f0cc399c59602a36d6c7"
+    },
+    "payload": "1k3sirrdbapj6puoyo1",
+    "bits": 94
+  },
+  {
+    "descriptor": {
+      "geo": 1668341,
+      "provider": 1,
+      "architecture": 0,
+      "nodeType": 1,
+      "cpu": 0,
+      "ram": 1,
+      "storage": 0,
+      "ipv4": "120.33.233.123",
+      "ipv6": "4456:f891:e7b2:cc1f:73a8:e3bf:9f8a:73e8",
+      "nodeId": "b92a3913b4143e3b786c"
+    },
+    "payload": "51o9a8ewcko3o3lfbiqyfyzuml0tbno7q46j7b1fh6whfjtdlhs65dalk",
+    "bits": 292
+  },
+  {
+    "descriptor": {
+      "nodeId": "626261e000e768531040"
+    },
+    "payload": "7cl3clyy8oh87srb4",
+    "bits": 86
+  },
+  {
+    "descriptor": {
+      "geo": 1668341,
+      "provider": 1,
+      "nodeId": "230a5805a63dcc2b6c4a"
+    },
+    "payload": "tgc6q7rvce6brvbwnkwwc1t",
+    "bits": 119
+  },
+  {
+    "descriptor": {
+      "cpu": 0,
+      "ram": 2,
+      "storage": 1,
+      "nodeId": "734cd9594ec8ef993524"
+    },
+    "payload": "1jkq8wvyea8yc313af6",
+    "bits": 94
+  },
+  {
+    "descriptor": {
+      "geo": 1668341,
+      "provider": 1,
+      "architecture": 0,
+      "nodeType": 1,
+      "cpu": 0,
+      "ram": 2,
+      "storage": 1,
+      "ipv4": "154.74.109.60",
+      "ipv6": "53a5:6606:1345:6154:4762:e6f4:4db0:3018",
+      "nodeId": "e8d6b31a1a91cdcbbbad"
+    },
+    "payload": "529cvv4sdofkkvysr3tglgjl04uqkd01t9pjo2wnpg4l49ibgufwlbaqg",
+    "bits": 292
+  }
+]

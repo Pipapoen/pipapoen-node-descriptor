@@ -1,0 +1,90 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main, develop, 'release/**', 'hotfix/**']
+  workflow_dispatch:
+  workflow_call:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  test:
+    name: Test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version-file: go.mod
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run check:locales
+      - run: pnpm run build
+      - run: python scripts/check-release.py
+      - run: python -m unittest discover -s scripts -p "test_*.py"
+      - run: python scripts/check-licenses.py
+      - if: runner.os == 'Linux'
+        name: Workflow syntax
+        run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.12 -shellcheck= .github/workflows/*.yml
+      - run: go vet ./...
+      - run: go test ./...
+      - if: runner.os == 'Linux'
+        run: go test -race ./...
+      - name: Build native application
+        shell: bash
+        run: |
+          mkdir -p build
+          if [ "$RUNNER_OS" = Windows ]; then suffix=.exe; else suffix=; fi
+          go build -trimpath -o "build/pnd${suffix}" ./cmd/pnd
+      - if: runner.os == 'Linux'
+        run: |
+          go run ./scripts/demo-fixtures
+          git diff --exit-code -- demo/src/examples.json
+          pnpm run build:demo
+          pnpm exec playwright install --with-deps chromium
+          node scripts/browser-ci.mjs
+          pnpm run test:demo
+      - if: runner.os == 'Linux'
+        name: Dependency vulnerabilities
+        run: |
+          python scripts/scan-public.py
+          go run golang.org/x/vuln/cmd/govulncheck@v1.10.0 ./...
+          pnpm audit --prod --audit-level high
+  container:
+    name: Clean container deployment
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - run: docker build --tag pnd:ci .
+      - name: Verify initialization, round trip and restart
+        env:
+          PND_IMAGE: pnd:ci
+        run: python3 scripts/container-smoke.py
+  gate:
+    name: CI gate
+    if: always()
+    needs: [test, container]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require all checks
+        env:
+          TEST_RESULT: ${{ needs.test.result }}
+          CONTAINER_RESULT: ${{ needs.container.result }}
+        run: test "$TEST_RESULT" = success && test "$CONTAINER_RESULT" = success

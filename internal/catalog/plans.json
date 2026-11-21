@@ -1,0 +1,1145 @@
+[
+  {
+    "provider": 1,
+    "name": "Basic Droplets-1-0.5-10.0",
+    "cpu": 0,
+    "ram": 0,
+    "storage": 0,
+    "label": "1 CPU / 0.5 GB / 10.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Basic Droplets-1-1.0-25.0",
+    "cpu": 0,
+    "ram": 1,
+    "storage": 0,
+    "label": "1 CPU / 1.0 GB / 25.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Basic Droplets-1-2.0-50.0",
+    "cpu": 0,
+    "ram": 2,
+    "storage": 1,
+    "label": "1 CPU / 2.0 GB / 50.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Basic Droplets-2-2.0-60.0",
+    "cpu": 1,
+    "ram": 2,
+    "storage": 1,
+    "label": "2 CPU / 2.0 GB / 60.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Basic Droplets-2-4.0-80.0",
+    "cpu": 1,
+    "ram": 4,
+    "storage": 2,
+    "label": "2 CPU / 4.0 GB / 80.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Basic Droplets-4-8.0-160.0",
+    "cpu": 3,
+    "ram": 6,
+    "storage": 3,
+    "label": "4 CPU / 8.0 GB / 160.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Basic Droplets-8-16.0-320.0",
+    "cpu": 5,
+    "ram": 8,
+    "storage": 4,
+    "label": "8 CPU / 16.0 GB / 320.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "CPU-Optimized Droplets-2-4.0-25.0",
+    "cpu": 1,
+    "ram": 4,
+    "storage": 0,
+    "label": "2 CPU / 4.0 GB / 25.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "CPU-Optimized Droplets-4-8.0-50.0",
+    "cpu": 3,
+    "ram": 6,
+    "storage": 1,
+    "label": "4 CPU / 8.0 GB / 50.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "CPU-Optimized Droplets-8-16.0-100.0",
+    "cpu": 5,
+    "ram": 8,
+    "storage": 2,
+    "label": "8 CPU / 16.0 GB / 100.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "CPU-Optimized Droplets-16-32.0-200.0",
+    "cpu": 7,
+    "ram": 10,
+    "storage": 3,
+    "label": "16 CPU / 32.0 GB / 200.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "CPU-Optimized Droplets-32-64.0-400.0",
+    "cpu": 9,
+    "ram": 11,
+    "storage": 4,
+    "label": "32 CPU / 64.0 GB / 400.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "CPU-Optimized Droplets-48-96.0-600.0",
+    "cpu": 10,
+    "ram": 12,
+    "storage": 5,
+    "label": "48 CPU / 96.0 GB / 600.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "General Purpose Droplets-2-8.0-25.0",
+    "cpu": 1,
+    "ram": 6,
+    "storage": 0,
+    "label": "2 CPU / 8.0 GB / 25.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "General Purpose Droplets-4-16.0-50.0",
+    "cpu": 3,
+    "ram": 8,
+    "storage": 1,
+    "label": "4 CPU / 16.0 GB / 50.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "General Purpose Droplets-8-32.0-100.0",
+    "cpu": 5,
+    "ram": 10,
+    "storage": 2,
+    "label": "8 CPU / 32.0 GB / 100.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "General Purpose Droplets-16-64.0-200.0",
+    "cpu": 7,
+    "ram": 11,
+    "storage": 3,
+    "label": "16 CPU / 64.0 GB / 200.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "General Purpose Droplets-32-128.0-400.0",
+    "cpu": 9,
+    "ram": 12,
+    "storage": 4,
+    "label": "32 CPU / 128.0 GB / 400.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "General Purpose Droplets-40-160.0-500.0",
+    "cpu": 10,
+    "ram": 13,
+    "storage": 4,
+    "label": "40 CPU / 160.0 GB / 500.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Memory-Optimized Droplets-2-16.0-50.0",
+    "cpu": 1,
+    "ram": 8,
+    "storage": 1,
+    "label": "2 CPU / 16.0 GB / 50.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Memory-Optimized Droplets-4-32.0-100.0",
+    "cpu": 3,
+    "ram": 10,
+    "storage": 2,
+    "label": "4 CPU / 32.0 GB / 100.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Memory-Optimized Droplets-8-64.0-200.0",
+    "cpu": 5,
+    "ram": 11,
+    "storage": 3,
+    "label": "8 CPU / 64.0 GB / 200.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Memory-Optimized Droplets-16-128.0-400.0",
+    "cpu": 7,
+    "ram": 12,
+    "storage": 4,
+    "label": "16 CPU / 128.0 GB / 400.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Memory-Optimized Droplets-24-192.0-600.0",
+    "cpu": 8,
+    "ram": 13,
+    "storage": 5,
+    "label": "24 CPU / 192.0 GB / 600.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Memory-Optimized Droplets-32-256.0-800.0",
+    "cpu": 9,
+    "ram": 13,
+    "storage": 5,
+    "label": "32 CPU / 256.0 GB / 800.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Storage-Optimized Droplets-2-16.0-300.0",
+    "cpu": 1,
+    "ram": 8,
+    "storage": 4,
+    "label": "2 CPU / 16.0 GB / 300.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Storage-Optimized Droplets-4-32.0-600.0",
+    "cpu": 3,
+    "ram": 10,
+    "storage": 5,
+    "label": "4 CPU / 32.0 GB / 600.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Storage-Optimized Droplets-8-64.0-1170.0",
+    "cpu": 5,
+    "ram": 11,
+    "storage": 6,
+    "label": "8 CPU / 64.0 GB / 1170.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Storage-Optimized Droplets-16-128.0-2340.0",
+    "cpu": 7,
+    "ram": 12,
+    "storage": 7,
+    "label": "16 CPU / 128.0 GB / 2340.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Storage-Optimized Droplets-24-192.0-3520.0",
+    "cpu": 8,
+    "ram": 13,
+    "storage": 7,
+    "label": "24 CPU / 192.0 GB / 3520.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 1,
+    "name": "Storage-Optimized Droplets-32-256.0-4690.0",
+    "cpu": 9,
+    "ram": 13,
+    "storage": 7,
+    "label": "32 CPU / 256.0 GB / 4690.0 GB",
+    "source": "https://www.digitalocean.com/pricing/droplets"
+  },
+  {
+    "provider": 2,
+    "name": "g6-nanode-1",
+    "cpu": 0,
+    "ram": 1,
+    "storage": 0,
+    "label": "1 CPU / 1.0 GB / 25.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-standard-1",
+    "cpu": 0,
+    "ram": 2,
+    "storage": 1,
+    "label": "1 CPU / 2.0 GB / 50.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-standard-2",
+    "cpu": 1,
+    "ram": 4,
+    "storage": 2,
+    "label": "2 CPU / 4.0 GB / 80.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-standard-4",
+    "cpu": 3,
+    "ram": 6,
+    "storage": 3,
+    "label": "4 CPU / 8.0 GB / 160.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-standard-6",
+    "cpu": 4,
+    "ram": 8,
+    "storage": 4,
+    "label": "6 CPU / 16.0 GB / 320.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-standard-8",
+    "cpu": 5,
+    "ram": 10,
+    "storage": 5,
+    "label": "8 CPU / 32.0 GB / 640.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-standard-16",
+    "cpu": 7,
+    "ram": 11,
+    "storage": 6,
+    "label": "16 CPU / 64.0 GB / 1280.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-standard-20",
+    "cpu": 8,
+    "ram": 12,
+    "storage": 6,
+    "label": "20 CPU / 96.0 GB / 1920.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-standard-24",
+    "cpu": 8,
+    "ram": 12,
+    "storage": 7,
+    "label": "24 CPU / 128.0 GB / 2560.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-standard-32",
+    "cpu": 9,
+    "ram": 13,
+    "storage": 7,
+    "label": "32 CPU / 192.0 GB / 3840.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-highmem-1",
+    "cpu": 1,
+    "ram": 9,
+    "storage": 0,
+    "label": "2 CPU / 24.0 GB / 20.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-highmem-2",
+    "cpu": 1,
+    "ram": 11,
+    "storage": 1,
+    "label": "2 CPU / 48.0 GB / 40.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-highmem-4",
+    "cpu": 3,
+    "ram": 12,
+    "storage": 2,
+    "label": "4 CPU / 90.0 GB / 90.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-highmem-8",
+    "cpu": 5,
+    "ram": 13,
+    "storage": 3,
+    "label": "8 CPU / 150.0 GB / 200.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-highmem-16",
+    "cpu": 7,
+    "ram": 14,
+    "storage": 4,
+    "label": "16 CPU / 300.0 GB / 340.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-dedicated-2",
+    "cpu": 1,
+    "ram": 4,
+    "storage": 2,
+    "label": "2 CPU / 4.0 GB / 80.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-dedicated-4",
+    "cpu": 3,
+    "ram": 6,
+    "storage": 3,
+    "label": "4 CPU / 8.0 GB / 160.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-dedicated-8",
+    "cpu": 5,
+    "ram": 8,
+    "storage": 4,
+    "label": "8 CPU / 16.0 GB / 320.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-dedicated-16",
+    "cpu": 7,
+    "ram": 10,
+    "storage": 5,
+    "label": "16 CPU / 32.0 GB / 640.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-dedicated-32",
+    "cpu": 9,
+    "ram": 11,
+    "storage": 6,
+    "label": "32 CPU / 64.0 GB / 1280.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-dedicated-48",
+    "cpu": 10,
+    "ram": 12,
+    "storage": 6,
+    "label": "48 CPU / 96.0 GB / 1920.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-dedicated-50",
+    "cpu": 11,
+    "ram": 12,
+    "storage": 7,
+    "label": "50 CPU / 128.0 GB / 2500.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g6-dedicated-56",
+    "cpu": 11,
+    "ram": 13,
+    "storage": 7,
+    "label": "56 CPU / 256.0 GB / 5000.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-4-2",
+    "cpu": 1,
+    "ram": 4,
+    "storage": 1,
+    "label": "2 CPU / 4.0 GB / 41.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-8-4",
+    "cpu": 3,
+    "ram": 6,
+    "storage": 2,
+    "label": "4 CPU / 8.0 GB / 82.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-16-8",
+    "cpu": 5,
+    "ram": 8,
+    "storage": 3,
+    "label": "8 CPU / 16.0 GB / 164.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-32-16",
+    "cpu": 7,
+    "ram": 10,
+    "storage": 4,
+    "label": "16 CPU / 32.0 GB / 328.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-64-32",
+    "cpu": 9,
+    "ram": 11,
+    "storage": 5,
+    "label": "32 CPU / 64.0 GB / 655.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-96-48",
+    "cpu": 10,
+    "ram": 12,
+    "storage": 5,
+    "label": "48 CPU / 96.0 GB / 983.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-128-64",
+    "cpu": 11,
+    "ram": 12,
+    "storage": 6,
+    "label": "64 CPU / 128.0 GB / 1311.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-256-128",
+    "cpu": 13,
+    "ram": 13,
+    "storage": 7,
+    "label": "128 CPU / 256.0 GB / 2621.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-512-256",
+    "cpu": 14,
+    "ram": 14,
+    "storage": 7,
+    "label": "256 CPU / 512.0 GB / 5243.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-8-2",
+    "cpu": 1,
+    "ram": 6,
+    "storage": 2,
+    "label": "2 CPU / 8.0 GB / 82.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-16-4",
+    "cpu": 3,
+    "ram": 8,
+    "storage": 3,
+    "label": "4 CPU / 16.0 GB / 164.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-32-8",
+    "cpu": 5,
+    "ram": 10,
+    "storage": 4,
+    "label": "8 CPU / 32.0 GB / 328.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-64-16",
+    "cpu": 7,
+    "ram": 11,
+    "storage": 5,
+    "label": "16 CPU / 64.0 GB / 655.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-96-24",
+    "cpu": 8,
+    "ram": 12,
+    "storage": 5,
+    "label": "24 CPU / 96.0 GB / 983.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-128-32",
+    "cpu": 9,
+    "ram": 12,
+    "storage": 6,
+    "label": "32 CPU / 128.0 GB / 1311.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-256-64",
+    "cpu": 11,
+    "ram": 13,
+    "storage": 7,
+    "label": "64 CPU / 256.0 GB / 2621.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g8-dedicated-512-128",
+    "cpu": 13,
+    "ram": 14,
+    "storage": 7,
+    "label": "128 CPU / 512.0 GB / 5243.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-dedicated-4-2",
+    "cpu": 1,
+    "ram": 4,
+    "storage": 2,
+    "label": "2 CPU / 4.0 GB / 80.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-dedicated-8-4",
+    "cpu": 3,
+    "ram": 6,
+    "storage": 3,
+    "label": "4 CPU / 8.0 GB / 160.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-dedicated-16-8",
+    "cpu": 5,
+    "ram": 8,
+    "storage": 4,
+    "label": "8 CPU / 16.0 GB / 320.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-dedicated-32-16",
+    "cpu": 7,
+    "ram": 10,
+    "storage": 5,
+    "label": "16 CPU / 32.0 GB / 640.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-dedicated-64-32",
+    "cpu": 9,
+    "ram": 11,
+    "storage": 6,
+    "label": "32 CPU / 64.0 GB / 1280.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-dedicated-96-48",
+    "cpu": 10,
+    "ram": 12,
+    "storage": 6,
+    "label": "48 CPU / 96.0 GB / 1920.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-dedicated-128-50",
+    "cpu": 11,
+    "ram": 12,
+    "storage": 7,
+    "label": "50 CPU / 128.0 GB / 2500.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 2,
+    "name": "g7-dedicated-256-56",
+    "cpu": 11,
+    "ram": 13,
+    "storage": 7,
+    "label": "56 CPU / 256.0 GB / 5000.0 GB",
+    "source": "https://api.linode.com/v4/linode/types?page_size=500"
+  },
+  {
+    "provider": 3,
+    "name": "vc2-1c-0.5gb-v6",
+    "cpu": 0,
+    "ram": 0,
+    "storage": 0,
+    "label": "1 CPU / 0.5 GB / 10.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vc2-1c-0.5gb",
+    "cpu": 0,
+    "ram": 0,
+    "storage": 0,
+    "label": "1 CPU / 0.5 GB / 10.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vc2-1c-1gb",
+    "cpu": 0,
+    "ram": 1,
+    "storage": 0,
+    "label": "1 CPU / 1.0 GB / 25.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vc2-1c-2gb",
+    "cpu": 0,
+    "ram": 2,
+    "storage": 1,
+    "label": "1 CPU / 2.0 GB / 55.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vc2-2c-2gb",
+    "cpu": 1,
+    "ram": 2,
+    "storage": 2,
+    "label": "2 CPU / 2.0 GB / 65.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vc2-2c-4gb",
+    "cpu": 1,
+    "ram": 4,
+    "storage": 2,
+    "label": "2 CPU / 4.0 GB / 80.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vc2-4c-8gb",
+    "cpu": 3,
+    "ram": 6,
+    "storage": 3,
+    "label": "4 CPU / 8.0 GB / 160.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vc2-6c-16gb",
+    "cpu": 4,
+    "ram": 8,
+    "storage": 4,
+    "label": "6 CPU / 16.0 GB / 320.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vc2-8c-32gb",
+    "cpu": 5,
+    "ram": 10,
+    "storage": 5,
+    "label": "8 CPU / 32.0 GB / 640.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vc2-16c-64gb",
+    "cpu": 7,
+    "ram": 11,
+    "storage": 6,
+    "label": "16 CPU / 64.0 GB / 1280.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vc2-24c-96gb",
+    "cpu": 8,
+    "ram": 12,
+    "storage": 6,
+    "label": "24 CPU / 96.0 GB / 1600.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhf-1c-1gb",
+    "cpu": 0,
+    "ram": 1,
+    "storage": 0,
+    "label": "1 CPU / 1.0 GB / 32.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhf-1c-2gb",
+    "cpu": 0,
+    "ram": 2,
+    "storage": 1,
+    "label": "1 CPU / 2.0 GB / 64.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhf-2c-2gb",
+    "cpu": 1,
+    "ram": 2,
+    "storage": 2,
+    "label": "2 CPU / 2.0 GB / 80.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhf-2c-4gb",
+    "cpu": 1,
+    "ram": 4,
+    "storage": 2,
+    "label": "2 CPU / 4.0 GB / 128.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhf-3c-8gb",
+    "cpu": 2,
+    "ram": 6,
+    "storage": 3,
+    "label": "3 CPU / 8.0 GB / 256.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhf-4c-16gb",
+    "cpu": 3,
+    "ram": 8,
+    "storage": 4,
+    "label": "4 CPU / 16.0 GB / 384.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhf-6c-24gb",
+    "cpu": 4,
+    "ram": 9,
+    "storage": 4,
+    "label": "6 CPU / 24.0 GB / 448.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhf-8c-32gb",
+    "cpu": 5,
+    "ram": 10,
+    "storage": 4,
+    "label": "8 CPU / 32.0 GB / 512.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhf-12c-48gb",
+    "cpu": 6,
+    "ram": 11,
+    "storage": 5,
+    "label": "12 CPU / 48.0 GB / 768.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhf-16c-58gb",
+    "cpu": 7,
+    "ram": 11,
+    "storage": 5,
+    "label": "16 CPU / 58.0 GB / 1024.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-1c-1gb-amd",
+    "cpu": 0,
+    "ram": 1,
+    "storage": 0,
+    "label": "1 CPU / 1.0 GB / 25.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-1c-2gb-amd",
+    "cpu": 0,
+    "ram": 2,
+    "storage": 1,
+    "label": "1 CPU / 2.0 GB / 50.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-2c-2gb-amd",
+    "cpu": 1,
+    "ram": 2,
+    "storage": 1,
+    "label": "2 CPU / 2.0 GB / 60.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-2c-4gb-amd",
+    "cpu": 1,
+    "ram": 4,
+    "storage": 2,
+    "label": "2 CPU / 4.0 GB / 100.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-4c-8gb-amd",
+    "cpu": 3,
+    "ram": 6,
+    "storage": 3,
+    "label": "4 CPU / 8.0 GB / 180.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-4c-12gb-amd",
+    "cpu": 3,
+    "ram": 7,
+    "storage": 4,
+    "label": "4 CPU / 12.0 GB / 260.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-8c-16gb-amd",
+    "cpu": 5,
+    "ram": 8,
+    "storage": 4,
+    "label": "8 CPU / 16.0 GB / 350.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-12c-24gb-amd",
+    "cpu": 6,
+    "ram": 9,
+    "storage": 4,
+    "label": "12 CPU / 24.0 GB / 500.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-1c-1gb-intel",
+    "cpu": 0,
+    "ram": 1,
+    "storage": 0,
+    "label": "1 CPU / 1.0 GB / 25.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-1c-2gb-intel",
+    "cpu": 0,
+    "ram": 2,
+    "storage": 1,
+    "label": "1 CPU / 2.0 GB / 50.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-2c-2gb-intel",
+    "cpu": 1,
+    "ram": 2,
+    "storage": 1,
+    "label": "2 CPU / 2.0 GB / 60.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-2c-4gb-intel",
+    "cpu": 1,
+    "ram": 4,
+    "storage": 2,
+    "label": "2 CPU / 4.0 GB / 100.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-4c-8gb-intel",
+    "cpu": 3,
+    "ram": 6,
+    "storage": 3,
+    "label": "4 CPU / 8.0 GB / 180.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-4c-12gb-intel",
+    "cpu": 3,
+    "ram": 7,
+    "storage": 4,
+    "label": "4 CPU / 12.0 GB / 260.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-8c-16gb-intel",
+    "cpu": 5,
+    "ram": 8,
+    "storage": 4,
+    "label": "8 CPU / 16.0 GB / 350.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 3,
+    "name": "vhp-12c-24gb-intel",
+    "cpu": 6,
+    "ram": 9,
+    "storage": 4,
+    "label": "12 CPU / 24.0 GB / 500.0 GB",
+    "source": "https://api.vultr.com/v2/plans?per_page=500"
+  },
+  {
+    "provider": 4,
+    "name": "linux-0.5gb",
+    "cpu": 1,
+    "ram": 0,
+    "storage": 0,
+    "label": "2 CPU / 0.5 GB / 20.0 GB",
+    "source": "https://aws.amazon.com/lightsail/pricing/"
+  },
+  {
+    "provider": 4,
+    "name": "linux-1gb",
+    "cpu": 1,
+    "ram": 1,
+    "storage": 1,
+    "label": "2 CPU / 1.0 GB / 40.0 GB",
+    "source": "https://aws.amazon.com/lightsail/pricing/"
+  },
+  {
+    "provider": 4,
+    "name": "linux-2gb",
+    "cpu": 1,
+    "ram": 2,
+    "storage": 1,
+    "label": "2 CPU / 2.0 GB / 60.0 GB",
+    "source": "https://aws.amazon.com/lightsail/pricing/"
+  },
+  {
+    "provider": 4,
+    "name": "linux-4gb",
+    "cpu": 1,
+    "ram": 4,
+    "storage": 2,
+    "label": "2 CPU / 4.0 GB / 80.0 GB",
+    "source": "https://aws.amazon.com/lightsail/pricing/"
+  },
+  {
+    "provider": 4,
+    "name": "linux-8gb",
+    "cpu": 1,
+    "ram": 6,
+    "storage": 3,
+    "label": "2 CPU / 8.0 GB / 160.0 GB",
+    "source": "https://aws.amazon.com/lightsail/pricing/"
+  },
+  {
+    "provider": 4,
+    "name": "linux-16gb",
+    "cpu": 3,
+    "ram": 8,
+    "storage": 4,
+    "label": "4 CPU / 16.0 GB / 320.0 GB",
+    "source": "https://aws.amazon.com/lightsail/pricing/"
+  },
+  {
+    "provider": 4,
+    "name": "linux-32gb",
+    "cpu": 5,
+    "ram": 10,
+    "storage": 5,
+    "label": "8 CPU / 32.0 GB / 640.0 GB",
+    "source": "https://aws.amazon.com/lightsail/pricing/"
+  },
+  {
+    "provider": 4,
+    "name": "linux-64gb",
+    "cpu": 7,
+    "ram": 11,
+    "storage": 6,
+    "label": "16 CPU / 64.0 GB / 1280.0 GB",
+    "source": "https://aws.amazon.com/lightsail/pricing/"
+  },
+  {
+    "provider": 4,
+    "name": "linux-128gb",
+    "cpu": 9,
+    "ram": 12,
+    "storage": 6,
+    "label": "32 CPU / 128.0 GB / 1280.0 GB",
+    "source": "https://aws.amazon.com/lightsail/pricing/"
+  },
+  {
+    "provider": 4,
+    "name": "linux-192gb",
+    "cpu": 10,
+    "ram": 13,
+    "storage": 6,
+    "label": "48 CPU / 192.0 GB / 1280.0 GB",
+    "source": "https://aws.amazon.com/lightsail/pricing/"
+  },
+  {
+    "provider": 4,
+    "name": "linux-256gb",
+    "cpu": 11,
+    "ram": 13,
+    "storage": 6,
+    "label": "64 CPU / 256.0 GB / 1280.0 GB",
+    "source": "https://aws.amazon.com/lightsail/pricing/"
+  }
+]

@@ -1,0 +1,17 @@
+.env
+.remote-sync
+.configure-agent-workspace
+.git
+.pnpm-store
+node_modules
+secrets
+build
+deploy-bundle
+internal/webui/assets
+docs
+data
+
+deployment.env
+deploy
+dist
+test-results

@@ -1,0 +1,29 @@
+{
+  "source": "GeoNames cities15000",
+  "snapshot": "2026-11-20",
+  "license": "CC BY 4.0",
+  "countries": 252,
+  "cities": 34248,
+  "coverage": "Cities with population greater than 15000 or capitals; not every settlement.",
+  "url": "https://download.geonames.org/export/dump/",
+  "source_sha256": {
+    "countryInfo.txt": "79f8f59ea01cbb40438bf1856dd6c2ff201f03f8fc72d0530b2646aaf603ef04",
+    "admin1CodesASCII.txt": "2e4867f5397acb056ea26377601b57af37cb4c81399770225018e9e439e91ad3",
+    "cities15000.zip": "3413ab7e63ee1f7da441fc4d9c962fe31b569319430ab1e5b549f683fab8b84f",
+    "alternateNamesV2.zip": "70abf09e809d8dd707087d364b0a489224ee322c2bb67817af9638f7010954fd"
+  },
+  "localization": {
+    "total": 34248,
+    "translated": 11296,
+    "conversion": "OpenCC s2twp, opencc-python-reimplemented 0.1.7; build time only",
+    "name_sources": {
+      "zh-tw": 255,
+      "zh": 10088,
+      "original": 22952,
+      "zh-hant": 657,
+      "zh-cn": 241,
+      "zh-hk": 31,
+      "zh-hans": 24
+    }
+  }
+}

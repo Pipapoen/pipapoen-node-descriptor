@@ -1,0 +1,20 @@
+services:
+  geoip-update:
+    image: pnd:26.1.0-rc.1
+    user: "0:0"
+    command: ["-update-geoip", "/data/GeoIP-City.mmdb"]
+    volumes:
+      - geoip-data:/data
+    mem_limit: 384m
+    cpus: 1
+    restart: "no"
+  pnd:
+    depends_on:
+      geoip-update:
+        condition: service_completed_successfully
+    environment:
+      PND_GEOIP_DB: /data/GeoIP-City.mmdb
+    volumes:
+      - geoip-data:/data:ro
+volumes:
+  geoip-data:

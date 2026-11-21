@@ -1,0 +1,21 @@
+# Release Candidate Validation
+
+Date: 2026-11-21. Product candidate: `26.1.0-rc.1`. Descriptor format: `0`.
+
+## Passed
+
+- Native Windows Go tests and vet, including initialization of a persistent deployment key, preservation of existing keys, and rejection of malformed existing keys.
+- Linux race-instrumented tests for the application packages in an isolated Go build container.
+- Frontend production builds, locale-key checks, desktop/mobile browser workflows, and all eight geographic-helper visibility combinations.
+- Static experience tests for three preset examples, compact/padded names, decoded details, language/theme changes, project-subpath hosting, mobile width, and absence of API requests. Desktop and mobile screenshots were inspected.
+- Clean multistage Docker build from an allowlisted source archive on the Linux trial host. An isolated release Compose project initialized its key, encoded/decoded a descriptor, recreated both services, and decoded the original name with the preserved key. Test containers and their disposable volume were removed.
+- Runtime notices matched eight linked Go modules and Basecoat; Go, Tailwind, GeoNames and DB-IP notices were present.
+- Go vulnerability scanning and production npm dependency auditing reported no known vulnerabilities on the test date. Gitleaks scanned the selected public source snapshot with redacted output and reported no leaks.
+- GitHub workflow syntax was checked with actionlint. Windows amd64, Linux amd64 and Compose archives were generated with SHA-256 checksums.
+- Twelve image-tag policy tests passed: exact candidates leave stable aliases unchanged; stable series/year/latest promotion uses numeric version ordering, all release pages, and the already-published image digest. Older-series and older-year patches preserve newer aliases. Failed release queries stop promotion.
+
+## Publication checks
+
+The local repository is initialized on `develop`, and the public GitHub repository has been created. Source commit/push, branch protection, hosted CI execution, GHCR upload/public visibility, tag publication and Pages deployment remain pending publication authorization. Local workflow validation does not replace a successful hosted run. Verify anonymous image pulls and installation from the actual published deployment archive before promoting the candidate to stable.
+
+The LAN MVP continues to use its existing deployment and key. Live GeoNames and DB-IP checks are recorded in MVP_VALIDATION.md. Real Authentik integration remains unconfigured; automated OIDC tests use a simulated provider.

@@ -1,0 +1,26 @@
+{
+  "name": "pipapoen-node-descriptor",
+  "private": true,
+  "version": "26.1.0-rc.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "check:locales": "node scripts/check-locales.mjs",
+    "test:browser": "node scripts/browser-test.mjs",
+    "build:demo": "tsc --noEmit && vite build --config vite.demo.config.ts",
+    "test:demo": "node scripts/demo-test.mjs",
+    "check:release": "python scripts/check-release.py"
+  },
+  "packageManager": "pnpm@11.25.0",
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "9.1.0",
+    "playwright": "^1.65.1",
+    "postcss": "8.5.33",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  },
+  "dependencies": {
+    "basecoat-css": "1.1.0"
+  }
+}

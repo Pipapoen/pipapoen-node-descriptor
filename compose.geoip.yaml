@@ -1,0 +1,6 @@
+services:
+  pnd:
+    environment:
+      PND_GEOIP_DB: /data/GeoLite2-City.mmdb
+    volumes:
+      - ./data/GeoLite2-City.mmdb:/data/GeoLite2-City.mmdb:ro

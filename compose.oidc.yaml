@@ -1,0 +1,11 @@
+services:
+  pnd:
+    environment:
+      PND_OIDC_ISSUER: ${PND_OIDC_ISSUER:?Set the OIDC issuer}
+      PND_OIDC_CLIENT_ID: ${PND_OIDC_CLIENT_ID:?Set the OIDC client ID}
+      PND_OIDC_CLIENT_SECRET_FILE: /run/secrets/oidc-client-secret
+    secrets:
+      - oidc-client-secret
+secrets:
+  oidc-client-secret:
+    file: ./secrets/oidc-client-secret

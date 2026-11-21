@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.png binary
+*.gz binary
+# Preserve upstream license files byte-for-byte on Windows and Linux.
+third_party/licenses/** -text -whitespace

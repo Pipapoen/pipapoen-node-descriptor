@@ -1,0 +1,25 @@
+GeoNames geographical data
+
+Source: GeoNames, https://www.geonames.org/
+Downloads: https://download.geonames.org/export/dump/
+Source files: countryInfo.txt, admin1CodesASCII.txt, cities15000.zip,
+alternateNamesV2.zip
+Snapshot downloaded: 2026-11-20
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+License terms: https://creativecommons.org/licenses/by/4.0/
+Legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+PND transforms this data into country records and country-grouped city JSON,
+retains selected geographic fields, sorts cities by population, and compresses
+each country's city list. This is a major-city/capital snapshot and does not
+cover every settlement. Source hashes are recorded in
+internal/geography/data/manifest.json. No endorsement by GeoNames is implied.
+
+English and Chinese alternate names are selected by language and preference
+flags. Chinese fallback names are converted with OpenCC s2twp at build time.
+Records without supported Chinese names retain their English/source names.
+Search aliases and translated administrative-area names are included.
+
+GeoNames supplies the data as is, without warranties of accuracy, timeliness,
+or completeness. PND's MIT source-code license does not replace the dataset's
+CC BY 4.0 terms.
