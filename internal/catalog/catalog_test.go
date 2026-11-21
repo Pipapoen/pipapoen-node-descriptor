@@ -4,17 +4,18 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
+	"reflect"
 	"testing"
 )
 
-func TestFrozenFormatZeroDictionary(t *testing.T) {
+func TestFrozenFormatZeroAndOneDictionary(t *testing.T) {
 	data, err := json.Marshal(Dictionary())
 	if err != nil {
 		t.Fatal(err)
 	}
 	hash := sha256.Sum256(data)
 	if hex.EncodeToString(hash[:]) != "744533032e5282766388956d37298cd41f2be0c6ba9e3a999cc897d03db0bed3" {
-		t.Fatal("format-0 dictionary changed")
+		t.Fatal("format-0/1 dictionary changed")
 	}
 }
 
@@ -74,5 +75,17 @@ func TestProviderRegistryAndPlanCoverage(t *testing.T) {
 	}
 	if separateDisk == 0 || arm == 0 {
 		t.Fatal("separate-disk and Arm plans must remain represented")
+	}
+}
+
+func TestFrozenResourceIntervals(t *testing.T) {
+	if !reflect.DeepEqual(CPU, []string{"(0, 1]", "(1, 2]", "(2, 3]", "(3, 4]", "(4, 6]", "(6, 8]", "(8, 12]", "(12, 16]", "(16, 24]", "(24, 32]", "(32, 48]", "(48, 64]", "(64, 96]", "(96, 128]", "(128, 256]", "> 256"}) {
+		t.Fatal("CPU format-0/1 intervals changed")
+	}
+	if !reflect.DeepEqual(RAM, []string{"(0, 0.5]", "(0.5, 1]", "(1, 2]", "(2, 3]", "(3, 4]", "(4, 6]", "(6, 8]", "(8, 12]", "(12, 16]", "(16, 24]", "(24, 32]", "(32, 64]", "(64, 128]", "(128, 256]", "(256, 512]", "> 512"}) {
+		t.Fatal("RAM format-0/1 intervals changed")
+	}
+	if !reflect.DeepEqual(Storage, []string{"(0, 32]", "(32, 64]", "(64, 128]", "(128, 256]", "(256, 512]", "(512, 1024]", "(1024, 2048]", "> 2048"}) {
+		t.Fatal("Storage format-0/1 intervals changed")
 	}
 }

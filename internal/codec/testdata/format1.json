@@ -1,0 +1,1094 @@
+[
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "024ccd482aad9c3290af"
+      },
+      "label": "x12i3nt0y3b9zdxi94p",
+      "hostname": "x12i3nt0y3b9zdxi94p.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 19,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "024ccd482aad9c3290af"
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "024ccd482aad9c3290af"
+      },
+      "label": "x12hcz98lj3tt0djd4mn3b2yep52z85ngzmtwxjgqhlil9uj2tlp6vhiw1r31ke",
+      "hostname": "x12hcz98lj3tt0djd4mn3b2yep52z85ngzmtwxjgqhlil9uj2tlp6vhiw1r31ke.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "8f4bc7104191ca3fe234",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x1v2cjz6fdkp4l55a2v2bkl4j",
+      "hostname": "x1v2cjz6fdkp4l55a2v2bkl4j.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 25,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "8f4bc7104191ca3fe234",
+      "geo": 1668341,
+      "provider": 1
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "8f4bc7104191ca3fe234",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x1x4fq8jhp2u6269xj9kvghhoxsiozwzj4t9hrtqyiutm8imso3pefzk7mqhpq9",
+      "hostname": "x1x4fq8jhp2u6269xj9kvghhoxsiozwzj4t9hrtqyiutm8imso3pefzk7mqhpq9.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "2f3dfbe582760931b31d",
+        "cpu": 0,
+        "ram": 0,
+        "storage": 0
+      },
+      "label": "x11ns3i8gjr8r0d737xiw",
+      "hostname": "x11ns3i8gjr8r0d737xiw.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 21,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "2f3dfbe582760931b31d",
+      "cpu": 0,
+      "ram": 0,
+      "storage": 0
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "2f3dfbe582760931b31d",
+        "cpu": 0,
+        "ram": 0,
+        "storage": 0
+      },
+      "label": "x1d9ee32mm0w0804t3bve130ie296b01wsjicsvj7l2zrkb1uaaoh54cit85tdb",
+      "hostname": "x1d9ee32mm0w0804t3bve130ie296b01wsjicsvj7l2zrkb1uaaoh54cit85tdb.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "880d1768949a67d61ca0",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 0,
+        "storage": 0,
+        "ipv4": "226.40.184.181",
+        "ipv6": "ba7:e8c4:bb22:f6bd:317:abfa:d9a5:a439"
+      },
+      "label": "x19cdi25eg8fjf76q8wjhtoigchp243gum4teux0gjexvgr0mmooazk7o7s",
+      "hostname": "x19cdi25eg8fjf76q8wjhtoigchp243gum4teux0gjexvgr0mmooazk7o7s.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 59,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "880d1768949a67d61ca0",
+      "geo": 1668341,
+      "provider": 1,
+      "architecture": 0,
+      "nodeType": 1,
+      "cpu": 0,
+      "ram": 0,
+      "storage": 0,
+      "ipv4": "226.40.184.181",
+      "ipv6": "ba7:e8c4:bb22:f6bd:317:abfa:d9a5:a439"
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "880d1768949a67d61ca0",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 0,
+        "storage": 0,
+        "ipv4": "226.40.184.181",
+        "ipv6": "ba7:e8c4:bb22:f6bd:317:abfa:d9a5:a439"
+      },
+      "label": "x11xnoythkc2haclf2pjjz7mjnzfqsl1ee59ieti8ofxxr6ij3jrcw0zh8tf1s2",
+      "hostname": "x11xnoythkc2haclf2pjjz7mjnzfqsl1ee59ieti8ofxxr6ij3jrcw0zh8tf1s2.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "c8694d97e70648e7ad2d"
+      },
+      "label": "x1fkf5dpw6i8ao7qraw",
+      "hostname": "x1fkf5dpw6i8ao7qraw.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 19,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "c8694d97e70648e7ad2d"
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "c8694d97e70648e7ad2d"
+      },
+      "label": "x10l5e6nvwm66ryvh6ridfjk6lcv7neq8mu8arblcqdesyp1sqvsrvxg8bqxj5m",
+      "hostname": "x10l5e6nvwm66ryvh6ridfjk6lcv7neq8mu8arblcqdesyp1sqvsrvxg8bqxj5m.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "0bfe52de7621f9ac79ef",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x1beao84q4bmfsnn2t34u46yq",
+      "hostname": "x1beao84q4bmfsnn2t34u46yq.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 25,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "0bfe52de7621f9ac79ef",
+      "geo": 1668341,
+      "provider": 1
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "0bfe52de7621f9ac79ef",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x1mt3ei5picmioz45e1cszc00q3vf3ih9y1mvmh7f4d3sc9us9kxzw1gmqv2krd",
+      "hostname": "x1mt3ei5picmioz45e1cszc00q3vf3ih9y1mvmh7f4d3sc9us9kxzw1gmqv2krd.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "f0cc399c59602a36d6c7",
+        "cpu": 0,
+        "ram": 1,
+        "storage": 0
+      },
+      "label": "x1tugvglck1nlmcx47irq",
+      "hostname": "x1tugvglck1nlmcx47irq.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 21,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "f0cc399c59602a36d6c7",
+      "cpu": 0,
+      "ram": 1,
+      "storage": 0
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "f0cc399c59602a36d6c7",
+        "cpu": 0,
+        "ram": 1,
+        "storage": 0
+      },
+      "label": "x1jm800dnuo6b1rptrq7oo96zrninn8hmcp6mwr69cwvwhd2o6zz8yc47pd4vpi",
+      "hostname": "x1jm800dnuo6b1rptrq7oo96zrninn8hmcp6mwr69cwvwhd2o6zz8yc47pd4vpi.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "b92a3913b4143e3b786c",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 1,
+        "storage": 0,
+        "ipv4": "120.33.233.123",
+        "ipv6": "4456:f891:e7b2:cc1f:73a8:e3bf:9f8a:73e8"
+      },
+      "label": "x1ycuqvn3sojfm1cgfh67uoa8csaixic4cv3vdf7gcleeg750k9rdw5uqv5",
+      "hostname": "x1ycuqvn3sojfm1cgfh67uoa8csaixic4cv3vdf7gcleeg750k9rdw5uqv5.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 59,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "b92a3913b4143e3b786c",
+      "geo": 1668341,
+      "provider": 1,
+      "architecture": 0,
+      "nodeType": 1,
+      "cpu": 0,
+      "ram": 1,
+      "storage": 0,
+      "ipv4": "120.33.233.123",
+      "ipv6": "4456:f891:e7b2:cc1f:73a8:e3bf:9f8a:73e8"
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "b92a3913b4143e3b786c",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 1,
+        "storage": 0,
+        "ipv4": "120.33.233.123",
+        "ipv6": "4456:f891:e7b2:cc1f:73a8:e3bf:9f8a:73e8"
+      },
+      "label": "x1n0fvb3qk21cn2iyw3w280h7gl95gqv4v14yfbzbzykd9lef1apmipsswnep0o",
+      "hostname": "x1n0fvb3qk21cn2iyw3w280h7gl95gqv4v14yfbzbzykd9lef1apmipsswnep0o.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "626261e000e768531040"
+      },
+      "label": "x1cje9opeu2te1wiu0b",
+      "hostname": "x1cje9opeu2te1wiu0b.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 19,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "626261e000e768531040"
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "626261e000e768531040"
+      },
+      "label": "x1553vwkrnvwqpgpfixx0zz95jjdtycuitacz3lw5l11rivmece3a5nfa7b54oe",
+      "hostname": "x1553vwkrnvwqpgpfixx0zz95jjdtycuitacz3lw5l11rivmece3a5nfa7b54oe.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "230a5805a63dcc2b6c4a",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x1mgdof4zx29do856kku89qr1",
+      "hostname": "x1mgdof4zx29do856kku89qr1.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 25,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "230a5805a63dcc2b6c4a",
+      "geo": 1668341,
+      "provider": 1
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "230a5805a63dcc2b6c4a",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x1bcytholg8dkbidvfi5dl2s9epoikyi1ajg04ccxi6q8416wq7z48s3h894c2r",
+      "hostname": "x1bcytholg8dkbidvfi5dl2s9epoikyi1ajg04ccxi6q8416wq7z48s3h894c2r.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "734cd9594ec8ef993524",
+        "cpu": 0,
+        "ram": 2,
+        "storage": 1
+      },
+      "label": "x1nri00v6t0oofb4k1epf",
+      "hostname": "x1nri00v6t0oofb4k1epf.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 21,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "734cd9594ec8ef993524",
+      "cpu": 0,
+      "ram": 2,
+      "storage": 1
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "734cd9594ec8ef993524",
+        "cpu": 0,
+        "ram": 2,
+        "storage": 1
+      },
+      "label": "x1901h15r16xwp5hp2mkojxruwsvc7rinpzdz47v5k6rpinrfyhw80igqjlbqdb",
+      "hostname": "x1901h15r16xwp5hp2mkojxruwsvc7rinpzdz47v5k6rpinrfyhw80igqjlbqdb.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "e8d6b31a1a91cdcbbbad",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 2,
+        "storage": 1,
+        "ipv4": "154.74.109.60",
+        "ipv6": "53a5:6606:1345:6154:4762:e6f4:4db0:3018"
+      },
+      "label": "x1h4tz14e3t14u1nphl87blmv1or4jrzvz0ovm1u527o15ujbe6lb87e1su",
+      "hostname": "x1h4tz14e3t14u1nphl87blmv1or4jrzvz0ovm1u527o15ujbe6lb87e1su.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 59,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "e8d6b31a1a91cdcbbbad",
+      "geo": 1668341,
+      "provider": 1,
+      "architecture": 0,
+      "nodeType": 1,
+      "cpu": 0,
+      "ram": 2,
+      "storage": 1,
+      "ipv4": "154.74.109.60",
+      "ipv6": "53a5:6606:1345:6154:4762:e6f4:4db0:3018"
+    },
+    "format": "1",
+    "keyHex": "0000000000000000000000000000000000000000000000000000000000000000",
+    "padded": {
+      "descriptor": {
+        "nodeId": "e8d6b31a1a91cdcbbbad",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 2,
+        "storage": 1,
+        "ipv4": "154.74.109.60",
+        "ipv6": "53a5:6606:1345:6154:4762:e6f4:4db0:3018"
+      },
+      "label": "x1mt7inrso77t1coo3694rwwnxrawh61l7joilh5yhi8jywutgsqkznv24n4ktm",
+      "hostname": "x1mt7inrso77t1coo3694rwwnxrawh61l7joilh5yhi8jywutgsqkznv24n4ktm.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "024ccd482aad9c3290af"
+      },
+      "label": "x1y58bnemsbzghkl11k",
+      "hostname": "x1y58bnemsbzghkl11k.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 19,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "024ccd482aad9c3290af"
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "024ccd482aad9c3290af"
+      },
+      "label": "x1jqgp4feyu81xqwsv1t9836pxsq2bs88atvu6gwn4rzxl0knk0bax1tkc4kis8",
+      "hostname": "x1jqgp4feyu81xqwsv1t9836pxsq2bs88atvu6gwn4rzxl0knk0bax1tkc4kis8.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "8f4bc7104191ca3fe234",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x10j2r6ceh49zm1lftdubirq6",
+      "hostname": "x10j2r6ceh49zm1lftdubirq6.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 25,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "8f4bc7104191ca3fe234",
+      "geo": 1668341,
+      "provider": 1
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "8f4bc7104191ca3fe234",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x136iw9m2xw86cdu2x6yh2ovoogvqfttrj3lexj7w7c2lk6dt8vqrl6ko0i95n5",
+      "hostname": "x136iw9m2xw86cdu2x6yh2ovoogvqfttrj3lexj7w7c2lk6dt8vqrl6ko0i95n5.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "2f3dfbe582760931b31d",
+        "cpu": 0,
+        "ram": 0,
+        "storage": 0
+      },
+      "label": "x1za4kc96uk5td4chwyu3",
+      "hostname": "x1za4kc96uk5td4chwyu3.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 21,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "2f3dfbe582760931b31d",
+      "cpu": 0,
+      "ram": 0,
+      "storage": 0
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "2f3dfbe582760931b31d",
+        "cpu": 0,
+        "ram": 0,
+        "storage": 0
+      },
+      "label": "x1gyvc6znszfum3hxuasq5s6s0tprjez58t73tzfgs2nv1kucd06c2jhq3gmdgf",
+      "hostname": "x1gyvc6znszfum3hxuasq5s6s0tprjez58t73tzfgs2nv1kucd06c2jhq3gmdgf.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "880d1768949a67d61ca0",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 0,
+        "storage": 0,
+        "ipv4": "226.40.184.181",
+        "ipv6": "ba7:e8c4:bb22:f6bd:317:abfa:d9a5:a439"
+      },
+      "label": "x1e4sp9iqo1rdfbx9vzl446uuh7u50sr1m09iiba94d3tev3jfl7ooeqpwk",
+      "hostname": "x1e4sp9iqo1rdfbx9vzl446uuh7u50sr1m09iiba94d3tev3jfl7ooeqpwk.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 59,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "880d1768949a67d61ca0",
+      "geo": 1668341,
+      "provider": 1,
+      "architecture": 0,
+      "nodeType": 1,
+      "cpu": 0,
+      "ram": 0,
+      "storage": 0,
+      "ipv4": "226.40.184.181",
+      "ipv6": "ba7:e8c4:bb22:f6bd:317:abfa:d9a5:a439"
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "880d1768949a67d61ca0",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 0,
+        "storage": 0,
+        "ipv4": "226.40.184.181",
+        "ipv6": "ba7:e8c4:bb22:f6bd:317:abfa:d9a5:a439"
+      },
+      "label": "x18ugbzmzqdim36jn5hldceyayacl34ywz6fdfh4i5f2n0fzjiyf5dyrdspu9z5",
+      "hostname": "x18ugbzmzqdim36jn5hldceyayacl34ywz6fdfh4i5f2n0fzjiyf5dyrdspu9z5.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "c8694d97e70648e7ad2d"
+      },
+      "label": "x19ydaa7cwjbpwcwagy",
+      "hostname": "x19ydaa7cwjbpwcwagy.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 19,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "c8694d97e70648e7ad2d"
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "c8694d97e70648e7ad2d"
+      },
+      "label": "x1c6r1zdw07vya3hbllpsg8zmp36hxwnsy8eltx1ix5ywizfl4d6t7ggtmc4a9s",
+      "hostname": "x1c6r1zdw07vya3hbllpsg8zmp36hxwnsy8eltx1ix5ywizfl4d6t7ggtmc4a9s.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "0bfe52de7621f9ac79ef",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x1c80n7bhlcxj4m2refqal7nv",
+      "hostname": "x1c80n7bhlcxj4m2refqal7nv.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 25,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "0bfe52de7621f9ac79ef",
+      "geo": 1668341,
+      "provider": 1
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "0bfe52de7621f9ac79ef",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x1z8145mskgu0shvqo7ijuvmxcig6dk40t7bv2pbhat1cawev9cgex70xam3y39",
+      "hostname": "x1z8145mskgu0shvqo7ijuvmxcig6dk40t7bv2pbhat1cawev9cgex70xam3y39.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "f0cc399c59602a36d6c7",
+        "cpu": 0,
+        "ram": 1,
+        "storage": 0
+      },
+      "label": "x12oab8vrsgf9uaq4w6s6",
+      "hostname": "x12oab8vrsgf9uaq4w6s6.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 21,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "f0cc399c59602a36d6c7",
+      "cpu": 0,
+      "ram": 1,
+      "storage": 0
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "f0cc399c59602a36d6c7",
+        "cpu": 0,
+        "ram": 1,
+        "storage": 0
+      },
+      "label": "x1p28v3txroysq9wwrqhpje7f66776j5i23w5cvjynfueeyo3h7fszdeuxjyg6u",
+      "hostname": "x1p28v3txroysq9wwrqhpje7f66776j5i23w5cvjynfueeyo3h7fszdeuxjyg6u.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "b92a3913b4143e3b786c",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 1,
+        "storage": 0,
+        "ipv4": "120.33.233.123",
+        "ipv6": "4456:f891:e7b2:cc1f:73a8:e3bf:9f8a:73e8"
+      },
+      "label": "x1s99tlb5ma153dmtquwu2xr8rv6twet7ro6whzgvqlp6utjvl5s4d3fozu",
+      "hostname": "x1s99tlb5ma153dmtquwu2xr8rv6twet7ro6whzgvqlp6utjvl5s4d3fozu.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 59,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "b92a3913b4143e3b786c",
+      "geo": 1668341,
+      "provider": 1,
+      "architecture": 0,
+      "nodeType": 1,
+      "cpu": 0,
+      "ram": 1,
+      "storage": 0,
+      "ipv4": "120.33.233.123",
+      "ipv6": "4456:f891:e7b2:cc1f:73a8:e3bf:9f8a:73e8"
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "b92a3913b4143e3b786c",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 1,
+        "storage": 0,
+        "ipv4": "120.33.233.123",
+        "ipv6": "4456:f891:e7b2:cc1f:73a8:e3bf:9f8a:73e8"
+      },
+      "label": "x10m26j5mtv3jiry2r4bx7cld3vs2tfyqil4tzztyijazg5hs6m11dlp5ervfd0",
+      "hostname": "x10m26j5mtv3jiry2r4bx7cld3vs2tfyqil4tzztyijazg5hs6m11dlp5ervfd0.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "626261e000e768531040"
+      },
+      "label": "x1qh2tli1gi32cblnn2",
+      "hostname": "x1qh2tli1gi32cblnn2.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 19,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "626261e000e768531040"
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "626261e000e768531040"
+      },
+      "label": "x1c7z4704did7qy2s0sdf063vstfggteuw4mr5klmryn4wzer9hs23p11ev2pzl",
+      "hostname": "x1c7z4704did7qy2s0sdf063vstfggteuw4mr5klmryn4wzer9hs23p11ev2pzl.example.org",
+      "preview": {
+        "bits": 86,
+        "capacityBits": 315,
+        "compactLength": 19,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "230a5805a63dcc2b6c4a",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x1j0urw36mxualeoma0lxmty2",
+      "hostname": "x1j0urw36mxualeoma0lxmty2.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 25,
+        "mode": "raw"
+      }
+    },
+    "descriptor": {
+      "nodeId": "230a5805a63dcc2b6c4a",
+      "geo": 1668341,
+      "provider": 1
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "230a5805a63dcc2b6c4a",
+        "geo": 1668341,
+        "provider": 1
+      },
+      "label": "x122g8l070quhfg1p0ry1tetm7j8w5mtq1is8cvyk1w3e50mow3y67akufsmq69",
+      "hostname": "x122g8l070quhfg1p0ry1tetm7j8w5mtq1is8cvyk1w3e50mow3y67akufsmq69.example.org",
+      "preview": {
+        "bits": 119,
+        "capacityBits": 315,
+        "compactLength": 25,
+        "labelLength": 63,
+        "mode": "raw"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "734cd9594ec8ef993524",
+        "cpu": 0,
+        "ram": 2,
+        "storage": 1
+      },
+      "label": "x1eu8jpjdvet63y8kr0c4",
+      "hostname": "x1eu8jpjdvet63y8kr0c4.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 21,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "734cd9594ec8ef993524",
+      "cpu": 0,
+      "ram": 2,
+      "storage": 1
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "734cd9594ec8ef993524",
+        "cpu": 0,
+        "ram": 2,
+        "storage": 1
+      },
+      "label": "x1zlq3s65aogkoi176uiqgkh1lytawo9ul0pe4dgpkk4ky8f8q3ta0176nkeh8y",
+      "hostname": "x1zlq3s65aogkoi176uiqgkh1lytawo9ul0pe4dgpkk4ky8f8q3ta0176nkeh8y.example.org",
+      "preview": {
+        "bits": 94,
+        "capacityBits": 315,
+        "compactLength": 21,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  },
+  {
+    "compact": {
+      "descriptor": {
+        "nodeId": "e8d6b31a1a91cdcbbbad",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 2,
+        "storage": 1,
+        "ipv4": "154.74.109.60",
+        "ipv6": "53a5:6606:1345:6154:4762:e6f4:4db0:3018"
+      },
+      "label": "x15rdqzmezd6ppo091n109fx00xmp4j7mpowd64ho0fy4xfk0q078y48g39",
+      "hostname": "x15rdqzmezd6ppo091n109fx00xmp4j7mpowd64ho0fy4xfk0q078y48g39.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 59,
+        "mode": "dictionary"
+      }
+    },
+    "descriptor": {
+      "nodeId": "e8d6b31a1a91cdcbbbad",
+      "geo": 1668341,
+      "provider": 1,
+      "architecture": 0,
+      "nodeType": 1,
+      "cpu": 0,
+      "ram": 2,
+      "storage": 1,
+      "ipv4": "154.74.109.60",
+      "ipv6": "53a5:6606:1345:6154:4762:e6f4:4db0:3018"
+    },
+    "format": "1",
+    "keyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "padded": {
+      "descriptor": {
+        "nodeId": "e8d6b31a1a91cdcbbbad",
+        "geo": 1668341,
+        "provider": 1,
+        "architecture": 0,
+        "nodeType": 1,
+        "cpu": 0,
+        "ram": 2,
+        "storage": 1,
+        "ipv4": "154.74.109.60",
+        "ipv6": "53a5:6606:1345:6154:4762:e6f4:4db0:3018"
+      },
+      "label": "x1muf45m68ut0irlm7mb0vpszgtg31n7vofp2vnrja9nugvw28cf03egnc6225v",
+      "hostname": "x1muf45m68ut0irlm7mb0vpszgtg31n7vofp2vnrja9nugvw28cf03egnc6225v.example.org",
+      "preview": {
+        "bits": 292,
+        "capacityBits": 315,
+        "compactLength": 59,
+        "labelLength": 63,
+        "mode": "dictionary"
+      }
+    }
+  }
+]

@@ -48,13 +48,26 @@ try{
   }
  }
 
+ // Public-key format-0 names remain readable by the new WASM decoder.
+ const legacy=JSON.parse(await readFile('internal/codec/testdata/format0.json','utf8')).filter(row=>/^0+$/.test(row.keyHex));
+ await page.locator('[data-tab=decode]').click();
+ for(const row of legacy){
+  for(const mode of ['compact','padded']){
+   await page.locator('#decoded').evaluate(el=>el.hidden=true);
+   await page.locator('#decode-input').fill(row[mode].hostname);await page.locator('#decode-form button').click();
+   await page.locator('#decoded').waitFor({state:'visible'});
+   await page.waitForFunction(id=>document.querySelector('#decoded-values').textContent.includes(id),row.descriptor.nodeId);
+  }
+ }
+ await page.locator('[data-tab=encode]').click();
+
  // Free-form inputs, custom prefix/domain and IPv6 operate beyond the old presets.
  const custom={nodeId:original,geo:5128581,provider:1,architecture:0,nodeType:1,cpu:3,ram:8,storage:2,ipv4:'192.0.2.42',ipv6:'2001:db8::42'};
  await importNode(custom);
  await page.locator('#prefix').fill('z');await page.locator('#domain').fill('nodes.example.org');
  await pick(page,'mode','compact');await generate();
  const compact=await page.locator('#hostname').textContent();
- assert.match(compact,/^z0[a-z0-9]+\.nodes\.example\.org$/);
+ assert.match(compact,/^z1[a-z0-9]+\.nodes\.example\.org$/);
  await pick(page,'mode','padded');await generate();
  const hostname=await page.locator('#hostname').textContent();
  assert.equal(hostname.split('.')[0].length,63);

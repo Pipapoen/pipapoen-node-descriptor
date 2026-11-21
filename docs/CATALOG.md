@@ -71,6 +71,6 @@ The snapshot covers selected general-purpose, compute, memory, shared/dedicated-
 4. Run `python scripts/build-catalog.py --check`, `python -m unittest discover -s scripts -p "test_*.py"`, `go test ./internal/catalog ./internal/codec`, and the catalog browser checks.
 5. Review changed mappings and source facts before deploying the new snapshot. A rebuild publishes the update; the running application performs no catalog polling.
 
-Format-0 decoding continues to use the frozen `dictionary.json`. Provider menus and recommendations evolve independently of that dictionary. Its canonical SHA-256 is `744533032e5282766388956d37298cd41f2be0c6ba9e3a999cc897d03db0bed3`; compatibility tests verify it alongside existing codec vectors.
+Formats 0 and 1 continue to use the frozen `dictionary.json`. Provider menus and recommendations evolve independently of that dictionary. Its canonical SHA-256 is `744533032e5282766388956d37298cd41f2be0c6ba9e3a999cc897d03db0bed3`; compatibility tests verify it alongside existing codec vectors.
 
 OneProvider recommendations cover published OneCloud general-purpose, high-performance and storage dimensions. Rows differing only in traffic allowances are combined. DediRock recommendations retain the published Los Angeles/New York KVM and Storage plan names. Architectures are omitted when the referenced product page does not state them.

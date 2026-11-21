@@ -1,0 +1,45 @@
+import {chromium} from 'playwright';
+import assert from 'node:assert/strict';
+import {mkdir} from 'node:fs/promises';
+const base=process.env.PND_TEST_URL||'http://127.0.0.1:8080';
+const browser=await chromium.launch({channel:process.env.PND_BROWSER_CHANNEL||(process.env.CI?undefined:'msedge'),headless:true});
+try{
+ const page=await browser.newPage({viewport:{width:1280,height:900},locale:'en-US'});
+ const errors=[];page.on('pageerror',error=>errors.push(error.message));
+ let required=true,authenticated=false,unavailable=false,logoutFails=false,logins=0;
+ await page.route('**/api/session',route=>route.fulfill({status:unavailable?503:200,json:unavailable?{error:'unavailable'}:{required,authenticated,brandName:'Test deployment'}}));
+ await page.route('**/auth/login',route=>{logins++;return route.fulfill({contentType:'text/html',body:'<h1>Identity provider</h1>'})});
+ await page.route('**/auth/logout',route=>{
+  assert.equal(route.request().method(),'POST');
+  if(logoutFails)return route.fulfill({status:503,json:{error:'unavailable'}});
+  authenticated=false;return route.fulfill({json:{ok:true}});
+ });
+ await page.goto(base);await page.waitForURL('**/auth/login');assert.equal(logins,1);
+ authenticated=true;await page.goto(base);await page.locator('#node-id').waitFor();
+ logoutFails=true;await page.locator('#logout').click();await page.locator('.auth-status-icon.is-error').waitFor();
+ assert.equal(await page.locator('#auth-title').textContent(),'Sign-out failed');
+ logoutFails=false;await page.locator('#auth-action').click();await page.waitForURL('**/?auth=logged-out');
+ await page.locator('.auth-status-icon.is-success').waitFor();
+ assert.equal(await page.locator('#auth-title').textContent(),'You are signed out');
+ await page.reload();await page.locator('#auth-action').waitFor();assert.equal(logins,1);
+ await page.locator('#auth-action').click();await page.waitForURL('**/auth/login');assert.equal(logins,2);
+ await page.goto(base+'/?auth=error');await page.locator('.auth-status-icon.is-error').waitFor();assert.equal(logins,2);
+ await page.locator('#auth-action').click();await page.waitForURL('**/auth/login');assert.equal(logins,3);
+ authenticated=true;await page.goto(base);await page.locator('#node-id').waitFor();
+ await page.route('**/api/encode',route=>route.fulfill({status:401,json:{error:'login_required'}}));
+ await page.locator('#generate').click();await page.waitForURL('**/auth/login');assert.equal(logins,4);
+ unavailable=true;await page.goto(base);await page.locator('.auth-status-icon.is-error').waitFor();
+ assert.equal(await page.locator('#auth-title').textContent(),'Unable to connect');
+ unavailable=false;authenticated=false;
+ await page.evaluate(()=>{localStorage.setItem('pnd.theme','light');localStorage.setItem('pnd.language','zh-TW')});
+ await page.goto(base+'/?auth=logged-out');await page.locator('.auth-status-icon.is-success').waitFor();
+ assert.equal(await page.locator('#auth-action').textContent(),'\u91cd\u65b0\u767b\u5165');
+ await mkdir('build/test-results',{recursive:true});await page.screenshot({path:'build/test-results/auth-signed-out-light.png',fullPage:true});
+ await page.evaluate(()=>localStorage.setItem('pnd.theme','dark'));
+ await page.setViewportSize({width:390,height:844});await page.goto(base+'/?auth=error');await page.locator('.auth-status-icon.is-error').waitFor();
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ await page.screenshot({path:'build/test-results/auth-error-dark-mobile.png',fullPage:true});
+ required=false;await page.goto(base+'/?auth=logged-out');await page.locator('#node-id').waitFor();
+ assert.equal(await page.locator('#logout').count(),0);assert.deepEqual(errors,[]);
+ console.log('Authentication UI passed (mocked session/IdP): automatic login, logout/retry, reload stability, callback errors, expiry redirect, outage, locales/themes and mobile layout.');
+}finally{await browser.close()}
