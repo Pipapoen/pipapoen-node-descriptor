@@ -1,5 +1,5 @@
 import { readFileSync, readdirSync } from 'node:fs';
-for (const directory of ['../web/src/locales/', '../demo/src/locales/']) {
+for (const directory of ['../web/src/locales/']) {
 const root = new URL(directory, import.meta.url);
 const base = JSON.parse(readFileSync(new URL('en.json',root),'utf8'));
 for(const file of readdirSync(root).filter(f=>f.endsWith('.json'))){

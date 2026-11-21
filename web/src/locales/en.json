@@ -123,5 +123,8 @@
   "locationNameUnavailable": "Name unavailable; ID retained",
   "feature_disabled": "This helper is disabled by the deployment.",
   "confirmGeoMatch": "Confirm a matching GeoNames place:",
-  "noGeoMatch": "No matching GeoNames ID in the local snapshot. Use the country/city helper or enter an ID."
+  "noGeoMatch": "No matching GeoNames ID in the local snapshot. Use the country/city helper or enter an ID.",
+  "demoLabel": "Browser demo - public key",
+  "demoHelp": "Encoding and decoding run in your browser using the PND codec and a public demonstration key (32 zero bytes). Names decode with that same key. Live place-name and IP queries are available in a configured deployment.",
+  "demoLicenses": "Demo licenses and public key"
 }
