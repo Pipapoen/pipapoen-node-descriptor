@@ -3,7 +3,7 @@
     "target": "ES2022", "lib": ["ES2022", "DOM"], "module": "ESNext",
     "moduleResolution": "Bundler", "strict": true, "noEmit": true,
     "resolveJsonModule": true, "allowSyntheticDefaultImports": true, "skipLibCheck": true,
-    "paths": {"@pnd/transport": ["./web/src/transport.ts"]}
+    "paths": {"@pnd/transport": ["./src/transport.ts"]}
   },
-  "include": ["web/**/*.ts", "demo/**/*.ts"]
+  "include": ["src/**/*.ts", "../demo/**/*.ts"]
 }

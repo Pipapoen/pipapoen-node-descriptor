@@ -87,11 +87,11 @@ try{
  await page.locator('#generate').click();assert.equal((await (await directoryOutput).json()).descriptor.provider,19);
  await chooseProvider('18','dedirock');
  await pick(page,'theme','dark');
- await mkdir('test-results',{recursive:true});await page.screenshot({path:'test-results/catalog-desktop.png',fullPage:true,animations:'disabled'});
+ await mkdir('build/test-results',{recursive:true});await page.screenshot({path:'build/test-results/catalog-desktop.png',fullPage:true,animations:'disabled'});
  await page.setViewportSize({width:390,height:844});
  const overflow=await page.evaluate(()=>[...document.querySelectorAll('body *')].map(e=>({tag:e.tagName,id:e.id,class:e.className,right:e.getBoundingClientRect().right,width:e.getBoundingClientRect().width})).filter(e=>e.width>0&&e.right>innerWidth+1));
  assert.equal(overflow.length,0,JSON.stringify(overflow.slice(0,12)));
- await page.screenshot({path:'test-results/catalog-mobile.png',fullPage:true,animations:'disabled'});
+ await page.screenshot({path:'build/test-results/catalog-mobile.png',fullPage:true,animations:'disabled'});
  await pick(page,'language','zh-TW');assert.equal(await page.locator('#provider').inputValue(),'18');
  assert.deepEqual(errors,[]);
  console.log('Catalog browser checks passed: aliases, families, named plans, Arm, optional disks, filters, pagination, retained fields, unknown IDs and mobile layout.');

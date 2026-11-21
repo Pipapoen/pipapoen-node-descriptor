@@ -7,7 +7,7 @@
 - Original positioning: an internal Pipapoen node-information encoder/decoder and reversible data format.
 - Status: historical requirements background. The current MVP behavior is described in docs/TECHNICAL.md and docs/DEPLOYMENT.md.
 
-This document preserves the original requirements and tradeoffs. Section 11 records subsequent user decisions and takes precedence where the original internal-only deployment assumptions differ. The concise architecture is documented in [the technical specification](docs/TECHNICAL.md). Tentative protocol details remain open to technical evaluation.
+This document preserves the original requirements and tradeoffs. Section 11 records subsequent user decisions and takes precedence where the original internal-only deployment assumptions differ. The concise architecture is documented in [the technical specification](TECHNICAL.md). Tentative protocol details remain open to technical evaluation.
 
 ## 1. Background
 
