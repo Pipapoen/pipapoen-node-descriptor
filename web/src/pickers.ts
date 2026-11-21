@@ -34,6 +34,7 @@ export function setupPickers(root:HTMLElement,t:(key:string)=>string){
   filter.setAttribute('aria-controls',id);
   if(!external)filter.setAttribute('aria-label',`${t('filterOptions')}: ${accessible}`);
   const fold=(value:string)=>value.normalize('NFKC').toLocaleLowerCase().trim();
+  let keyboardSelection=false;
   function place(){
    if(!wrapper.open)return;
    const rect=trigger.getBoundingClientRect();
@@ -63,11 +64,13 @@ export function setupPickers(root:HTMLElement,t:(key:string)=>string){
   wrapper.addEventListener('toggle',()=>{
    trigger.setAttribute('aria-expanded',String(wrapper.open));
    if(wrapper.open){
+    keyboardSelection=false;
     for(const control of controls)if(control.picker!==wrapper)control.picker.open=false;
     refresh();if(!filter.disabled){filter.focus();filter.select()}
    }
   },{signal:events.signal});
   wrapper.addEventListener('keydown',event=>{
+   if(event.target===select)keyboardSelection=true;
    if(event.target===trigger&&trigger.getAttribute('aria-disabled')==='true'&&['ArrowDown','ArrowUp','Enter',' '].includes(event.key)){event.preventDefault();return}
    if(event.key==='Escape'){event.preventDefault();event.stopPropagation();close(true)}
    else if(event.key==='ArrowDown'&&(event.target===filter||event.target===trigger)){
@@ -76,7 +79,10 @@ export function setupPickers(root:HTMLElement,t:(key:string)=>string){
    else if(event.key==='Enter'&&event.target===filter){event.preventDefault();if(!select.disabled)select.focus()}
   },{signal:events.signal});
   wrapper.addEventListener('focusout',event=>{if(event.relatedTarget&&!wrapper.contains(event.relatedTarget as Node))close()},{signal:events.signal});
-  select.addEventListener('change',refresh,{signal:events.signal});
+  select.addEventListener('pointerdown',()=>{keyboardSelection=false},{signal:events.signal});
+  select.addEventListener('keyup',()=>{keyboardSelection=false},{signal:events.signal});
+  // Commit before dependent fields rebuild options or a locale change remounts the form.
+  select.addEventListener('change',()=>{if(!keyboardSelection)close(true);refresh()},{capture:true,signal:events.signal});
   select.addEventListener('click',event=>{if(event.target instanceof HTMLOptionElement)close(true)},{signal:events.signal});
   filter.addEventListener('input',refresh,{signal:events.signal});
   const observer=new MutationObserver(refresh);observer.observe(select,{childList:true,subtree:true,attributes:true,attributeFilter:['disabled','label']});

@@ -87,10 +87,10 @@ try{
  await page.locator('#geo-tools > summary').click();
  await page.waitForFunction(()=>!document.querySelector('#country-filter').disabled);
  await page.locator('#country-trigger').click();await page.locator('#country-filter').fill('United States');
- await page.locator('#country').selectOption('US');await page.locator('#country').press('Enter');
+ await page.locator('#country').selectOption('US');assert.equal(await page.locator('#country-picker').evaluate(el=>el.open),false);
  await page.locator('#city-trigger').click();await page.locator('#city-filter').fill('New York');
  await page.waitForFunction(()=>Array.from(document.querySelector('#city').options).some(o=>o.value==='5128581'));
- await page.locator('#city').selectOption('5128581');await page.locator('#city').press('Enter');await page.locator('#use-city').click();
+ await page.locator('#city').selectOption('5128581');assert.equal(await page.locator('#city-picker').evaluate(el=>el.open),false);await page.locator('#use-city').click();
  assert.equal(await page.locator('#geo').inputValue(),'5128581');
  assert.equal(await page.locator('#geo-tab-place').isVisible(),false);
  assert.equal(await page.locator('#geo-tab-ip').isVisible(),false);

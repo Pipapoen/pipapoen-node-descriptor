@@ -6,7 +6,7 @@ try {
  const page=await browser.newPage({viewport:{width:1280,height:1000},locale:'en-US',colorScheme:'light'});
  async function openPicker(kind){const other=kind==='country'?'city':'country';if(await page.locator('#'+other+'-picker').evaluate(el=>el.open))await page.locator('#'+other+'-filter').press('Escape');if(!await page.locator('#'+kind+'-picker').evaluate(el=>el.open))await page.locator('#'+kind+'-trigger').click()}
 async function filterPicker(kind,value){await openPicker(kind);if(kind==='city'){const response=page.waitForResponse(r=>r.url().includes('/api/cities?')&&new URL(r.url()).searchParams.get('q')===value);await page.locator('#'+kind+'-filter').fill(value);await response}else await page.locator('#'+kind+'-filter').fill(value)}
-async function choosePicker(kind,value){await openPicker(kind);await page.locator('#'+kind).selectOption(value);await page.locator('#'+kind).press('Enter')}
+async function choosePicker(kind,value){await openPicker(kind);await page.locator('#'+kind).selectOption(value);if(await page.locator('#'+kind+'-picker').evaluate(el=>el.open))await page.locator('#'+kind).press('Enter')}
  await page.goto(process.env.PND_TEST_URL||'http://127.0.0.1:8080');
  await page.locator('#node-id').waitFor();
  const descriptor={nodeId:'0123456789abcdef0123',geo:5128581,provider:1,architecture:0,nodeType:1,cpu:3,ram:8,storage:2,ipv4:'192.0.2.10'};
