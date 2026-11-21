@@ -1,7 +1,7 @@
 # Pipapoen Node Descriptor
 
 [![AI Disclosure: AGAIN](https://img.shields.io/badge/AI%20Disclosure-AGAIN-8055CC?style=flat-square)](https://github.com/Doner357/AGAIN)
-![Status: Release candidate](https://img.shields.io/badge/status-release%20candidate-64748B?style=flat-square)
+![Status: Stable](https://img.shields.io/badge/status-stable-15803D?style=flat-square)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2563EB?style=flat-square)](LICENSE)
 ![Platforms: Windows and Linux](https://img.shields.io/badge/platforms-Windows%20%7C%20Linux-475569?style=flat-square)
 ![Backend: Go](https://img.shields.io/badge/backend-Go-007D9C?style=flat-square)
