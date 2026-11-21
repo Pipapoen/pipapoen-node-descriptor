@@ -16,6 +16,8 @@ Date: 2026-11-21. Product candidate: `26.1.0-rc.1`. Descriptor format: `0`.
 
 ## Publication checks
 
-The local repository is initialized on `develop`, and the public GitHub repository has been created. Source commit/push, branch protection, hosted CI execution, GHCR upload/public visibility, tag publication and Pages deployment remain pending publication authorization. Local workflow validation does not replace a successful hosted run. Verify anonymous image pulls and installation from the actual published deployment archive before promoting the candidate to stable.
+The public repository uses Git Flow with `develop`, `main` and `release/26.1.0`. Hosted [CI run 44873161145](https://github.com/Pipapoen/pipapoen-node-descriptor/actions/runs/44873161145) passed the Windows/Linux tests, Linux race and browser checks, security scans, clean container deployment and aggregate gate. Hosted verification identified and fixed explicit clipboard permissions for headless Chromium and the Go security baseline; CI and source containers now use Go 1.26.11. The branch protections require `CI gate`, and release tags are protected against updates and deletion.
+
+The tag-triggered release workflow records the candidate's exact source commit and image digest. Verify anonymous image pulls and installation from the actual published deployment archive before promoting the candidate to stable.
 
 The LAN MVP continues to use its existing deployment and key. Live GeoNames and DB-IP checks are recorded in MVP_VALIDATION.md. Real Authentik integration remains unconfigured; automated OIDC tests use a simulated provider.
